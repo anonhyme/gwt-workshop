@@ -1,0 +1,5 @@
+com.google.gwt.query.client
+com.google.gwt.query.client.css
+com.google.gwt.query.client.impl
+com.google.gwt.query.client.plugins
+com.google.gwt.query.rebind
