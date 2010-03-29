@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.6.4//EN" "http://google-web-toolkit.googlecode.com/svn/tags/1.6.4/distro-source/core/src/gwt-module.dtd">
+<module rename-to='maps'>
+
+  <inherits name='com.google.gwt.user.User'/>
+  <inherits name="com.google.code.p.gwtchismes.GWTChismes"/>
+  <!--<inherits name='gwtquery.GwtQuery'/>-->
+  <inherits name='com.google.gwt.query.Query'/>
+
+  <inherits name="com.google.gwt.maps.GoogleMaps" />
+  
+  <entry-point class='gwtws.seo.client.Maps'/>
+  
+</module>

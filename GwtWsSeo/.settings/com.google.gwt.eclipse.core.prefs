@@ -1,0 +1,4 @@
+#Mon Mar 29 17:15:50 CEST 2010
+eclipse.preferences.version=1
+entryPointModules=gwtws.seo.Maps|gwtws.seo.Menu
+filesCopiedToWebInfLib=gwt-servlet.jar
