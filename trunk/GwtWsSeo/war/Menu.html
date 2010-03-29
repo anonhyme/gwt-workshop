@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Untitled</title>
+  <style type="text/css">
+    /*<![CDATA[*/
+    html, body {
+      background-color:#ddd;
+    }
+    .center {
+      margin:0 auto;
+      padding:0;
+      width:500px;
+    }
+    .submenu li {
+      background-color: #fff;
+    }
+    ul.current, li.current {
+      background-color: #f66;
+    }
+    /*]]>*/
+  </style>  
+    <script type="text/javascript">
+       function goTo(location) {
+          window.location = location + window.location.search;
+       }
+    </script>
+</head>
+<body>
+  <div class="center">
+    <a href="javascript:goTo('./index.html')">home</a>
+    <a href="http://www.google.com">google</a><br />
+    <ul class="menuContainer">
+      <li><a class="menuAction defaultItem" href="#page1">Page 1</a></li>
+      <li><a href="#page2">Page 2</a></li>
+      <li>
+        <a href="#">Page 3 ...</a>
+        <ul class="submenu">
+          <li><a href="#page3-1">Page 3, section 1</a></li>
+          <li><a href="#page3-2">Page 3, section 2</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">Page 4 ...</a>
+        <ul class="submenu">
+          <li><a href="#page4-1">Page 4, section 1</a></li>
+          <li><a href="#page4-2">Page 4, section 2</a></li>
+          <li><a href="#page4-3">Page 4, section 3</a></li>
+        </ul>
+      </li>
+      <li><a href="#page5">Page 5</a></li>
+      <li><a href="#page6">Page 6</a></li>
+      <li><a href="#page7">Page 7</a></li>
+      <li><a href="#page8">Page 8</a></li>
+      <li>
+        <a href="#">Page 9 ...</a>
+        <ul class="submenu">
+          <li><a href="#page9-1">Page 9, section 1</a></li>
+          <li><a href="#page9-2">Page 9, section 2</a></li>
+          <li><a href="#page9-3">Page 9, section 3</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div id="content">
+      <div id="page1">
+        <h3>Page One</h3>
+        Content One
+      </div>
+      <div id="page2">
+        <h3>Page Two</h3>
+        Content<br/>
+        <a href="#page5">Page 5</a><br />
+      </div>
+      <div id="page3-1">
+        <h3>Page Three, Section One</h3>
+        Content<br/>
+        <a href="#page10">Page 10</a>
+      </div>
+      <div id="page3-2">
+        <h3>Page Three, Section One</h3>
+        Content<br/>
+        <a href="http://www.google.com/#">External link with #</a><br />
+      </div>
+      <div id="page4-1">
+        <h3>Page Four, Section One</h3>
+        Content<br/>
+      </div>
+      <div id="page4-2">
+        <h3>Page Four, Section Two</h3>
+        Content<br/>
+      </div>
+      <div id="page4-3">
+        <h3>Page Four, Section Tree</h3>
+        Content<br/>
+      </div>
+      <div id="page5">
+        <h3>Page Five</h3>
+        Content<br/>
+      </div>
+      <div id="page6">
+        <h3>Page Six</h3>
+        Content<br/>
+      </div>
+      <div id="page7">
+        <h3>Page Seven</h3>
+        Content<br/>
+      </div>
+      <div id="page8">
+        <h3>Page Eight</h3>
+        Content<br/>
+      </div>
+      <div id="page9-1">
+        <h3>Page Nine, Section One</h3>
+        Content<br/>
+      </div>
+      <div id="page9-2">
+        <h3>Page Nine, Section Two</h3>
+        Content<br/>
+        <a href="#page9-3-bottom">Go to Page nine, section 3, bottom</a><br/>
+      </div>
+      <div id="page9-3">
+        <h3>Page Nine, Section Tree</h3>
+        <a href="#page9-3-bottom">Go to bottom</a><br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        Large Content<br/>
+        <div id="whatever" style="background: pink">
+          <p id="page9-3-bottom">Bottom of page 9, section 3</p>
+        </div>
+      </div>
+    </div><!-- id="contents" -->
+  </div>
+  
+  <script type="text/javascript" src="menu/menu.nocache.js"></script>
+</body>
+</html>
+
+
+

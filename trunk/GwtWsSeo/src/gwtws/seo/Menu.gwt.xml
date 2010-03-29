@@ -1,0 +1,10 @@
+<module rename-to='menu'>
+    <inherits name='com.google.gwt.user.User'/>
+    <!--<inherits name='gwtquery.GwtQuery'/>-->
+    <inherits name='com.google.gwt.query.Query'/>
+    <entry-point class='gwtws.seo.client.Menu'/>
+    
+      <inherits name="com.google.gwt.maps.GoogleMaps" />
+      
+<!--    <add-linker name="xs"/>-->
+</module>
