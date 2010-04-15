@@ -13,8 +13,8 @@ import com.google.gwt.user.client.Window;
 
 public class Maps implements EntryPoint {
 
-  static final String ID_MASHUP = "mirai-maps";
-  static String ID_MAP = "mymap";
+  static final String ID_MASHUP = "mymap-js";
+  static String ID_MAP = "mymap-id";
 
   private static String wsHost = "";
 
@@ -24,9 +24,6 @@ public class Maps implements EntryPoint {
 
   static GoogleMap myGmap = new GoogleMap();
   static boolean apiloaded = false;
-
-  
-  
   
   /**
    * Se llama cuando el documento esta listo (document.onLoad)
@@ -76,14 +73,14 @@ public class Maps implements EntryPoint {
           myGmap.fillDataFromProperties(response.getText());
           if (myGmap.hasEnoughInfo()) {
             showMap();
-          } else if (myGmap.idhotel > 0) {
-            getHsWsConfiguration();
+          } else if (myGmap.id > 0) {
+            getWsConfiguration();
           }
         }
         public void onError(Request request, Throwable exception) {
           showMessage("Error getting map configuration from " + URL_GMAP_CONFIG );
-          if (myGmap.idhotel > 0) {
-            getHsWsConfiguration();
+          if (myGmap.id > 0) {
+            getWsConfiguration();
           }
         }
       });
@@ -95,14 +92,14 @@ public class Maps implements EntryPoint {
   /**
    * Traerse por cross-scripting la configuracion si sabemos el id y pintar el mapa si hay suficiente informacion
    */
-  private void getHsWsConfiguration() {
-    String ws = wsHost + URL_ID_TO_COORDINATES.replaceAll("%ID%", "" + myGmap.idhotel);
+  private void getWsConfiguration() {
+    String ws = wsHost + URL_ID_TO_COORDINATES.replaceAll("%ID%", "" + myGmap.id);
     showMessage("Getting map configuration from " + ws);
     GWTCHelper.insertJS("id_to_coordinates", ws);
   }
 
   /**
-   * funcion de callback cuando se pide la configuracion a rails  
+   * funcion de callback cuando se pide la configuracion al ws
    */
   public static void updateMapConfFromWs(double lat, double lng, int zoom, String precission) {
     myGmap.fillDataFromWebService(lat, lng, zoom, precission);

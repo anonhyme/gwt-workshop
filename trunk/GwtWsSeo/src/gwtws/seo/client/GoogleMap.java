@@ -24,7 +24,7 @@ public class GoogleMap {
   int zoom = DEFAULT_ZOOM;
   int width = DEFAULT_WIDTH;
   int height = DEFAULT_HEIGHT;
-  int idhotel = 0;
+  int id = 0;
   String precission = DEFAULT_PRECISSION;
   String key = null;
   MapWidget map = null;
@@ -38,7 +38,7 @@ public class GoogleMap {
   }
 
   public String toString() {
-    return " lng:" + lng + " lat:" + lat + " zoom:" + zoom + " idhotel:" + idhotel + " host:" + host + " key:" + key;
+    return " lng:" + lng + " lat:" + lat + " zoom:" + zoom + " id:" + id + " host:" + host + " key:" + key;
   }
   
   public boolean hasEnoughInfo() {
@@ -84,7 +84,7 @@ public class GoogleMap {
     String id = GWTCHelper.getParameterFromUrl(url, "id");
 
     if (id != null)
-      this.idhotel = Integer.parseInt(id);
+      this.id = Integer.parseInt(id);
     String zoom = GWTCHelper.getParameterFromUrl(url, "zoom");
 
     if (zoom != null)
@@ -110,7 +110,7 @@ public class GoogleMap {
     lng = prop.getDouble("lng");
     lat = prop.getDouble("lat");
     zoom = prop.getInt("zoom");
-    idhotel = prop.getInt("id");
+    id = prop.getInt("id");
 
     String key = prop.get("key");
     if (key.length() > 0)
