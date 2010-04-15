@@ -41,7 +41,7 @@ public class TestMaps extends GWTTestCase {
     Assert.assertEquals(0d, map.lng);
     Assert.assertEquals(GoogleMap.DEFAULT_ZOOM, map.zoom);
     Assert.assertEquals(GoogleMap.DEFAULT_PRECISSION, map.precission);
-    Assert.assertEquals(0, map.idhotel);
+    Assert.assertEquals(0, map.id);
     Assert.assertEquals(GoogleMap.LOCALHOST_KEY, map.key);
     
     Assert.assertEquals(false, map.hasEnoughInfo());
@@ -51,7 +51,7 @@ public class TestMaps extends GWTTestCase {
     Assert.assertEquals(0.0d, map.lng);
     Assert.assertEquals(GoogleMap.DEFAULT_ZOOM, map.zoom);
     Assert.assertEquals(GoogleMap.DEFAULT_PRECISSION, map.precission);
-    Assert.assertEquals(0, map.idhotel);
+    Assert.assertEquals(0, map.id);
     Assert.assertEquals(GoogleMap.LOCALHOST_KEY, map.key);
     Assert.assertEquals(false, map.hasEnoughInfo());
     
@@ -61,7 +61,7 @@ public class TestMaps extends GWTTestCase {
     Assert.assertEquals(-222.2222222d, map.lng);
     Assert.assertEquals(3, map.zoom);
     Assert.assertEquals(GoogleMap.DEFAULT_PRECISSION, map.precission);
-    Assert.assertEquals(1234, map.idhotel);
+    Assert.assertEquals(1234, map.id);
     Assert.assertEquals("a_key", map.key);
     Assert.assertTrue(map.hasEnoughInfo());
     
