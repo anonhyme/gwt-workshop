@@ -2,3 +2,13 @@
 This code has been taken from this google tutorial:
 
 http://code.google.com/intl/es/webtoolkit/doc/latest/tutorial/mvp-architecture.html
+
+NOTE:
+
+To run all tests in Eclipse as normal JUnit tests, you have to add sources folders
+to the class path:
+ 1.- Select the project -> Run As -> JUnit Test. This should fail
+ 2.- Select the project -> Run As -> Run Configurations -> Class Path -> User Entries 
+      -> Advanced -> Add Folders -> Select: src, tests -> Apply -> Run
+
+
