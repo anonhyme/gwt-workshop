@@ -160,6 +160,11 @@
   </build>
   <repositories>
     <repository>
+      <id>gwt-workshop</id>
+      <name>GWT repository for workshop at googlecode</name>
+      <url>http://gwt-workshop.googlecode.com/svn/trunk/mavenrepo</url>
+    </repository>
+    <repository>
       <id>gwt-dispatch</id>
       <name>GWT Dispatch repository at googlecode</name>
       <url>http://gwt-dispatch.googlecode.com/svn/maven2</url>
