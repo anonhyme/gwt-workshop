@@ -32,8 +32,8 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class EditContactPresenterTest extends MyClientTestCase {
 
-	ApplicationController controller = injector.getInstance(ApplicationController.class);
-	ApplicationController.Display appDspl = controller.getDisplay();
+	MainPresenter controller = injector.getInstance(MainPresenter.class);
+	MainPresenter.Display appDspl = controller.getDisplay();
 	ContactsPresenter contactsPresenter = injector.getInstance(ContactsPresenter.class);
 	ContactsPresenter.Display contactsDspl = injector.getInstance(ContactsPresenter.Display.class);
 	EditContactPresenter editPresenter = injector.getInstance(EditContactPresenter.class);

@@ -78,7 +78,7 @@ public class ContactsPresenter extends
 				}
 			}
 		});
-		
+
 		fetchContactDetails();
 	}
 
@@ -136,7 +136,7 @@ public class ContactsPresenter extends
 					}
 				});
 	}
-	
+
 	public void updateAndRevealDisplay() {
 		fetchContactDetails();
 		super.revealDisplay();

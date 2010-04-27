@@ -20,7 +20,7 @@ package gwtws.mvp.client.guice;
 
 import gwtws.mvp.client.presenter.ContactsPresenter;
 import gwtws.mvp.client.presenter.EditContactPresenter;
-import gwtws.mvp.client.presenter.ApplicationController;
+import gwtws.mvp.client.presenter.MainPresenter;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.client.service.DispatchService;
 import net.customware.gwt.dispatch.server.DefaultDispatch;
@@ -74,9 +74,9 @@ public class MyTestClientModule extends AbstractModule {
 		
 		easyBind(PlaceManager.class);
 
-		bind(ApplicationController.class).asEagerSingleton();
+		bind(MainPresenter.class).asEagerSingleton();
 //		easyBind(MyAppController.Display.class);
-		bind(ApplicationController.Display.class).to(MockedMainView.class).asEagerSingleton();
+		bind(MainPresenter.Display.class).to(MockedMainView.class).asEagerSingleton();
 
 		bind(ContactsPresenter.class).asEagerSingleton();
 		easyBind(ContactsPresenter.Display.class);
@@ -86,7 +86,7 @@ public class MyTestClientModule extends AbstractModule {
 		bind(EditContactPresenter.Display.class).to(MockedEditContactsView.class).asEagerSingleton();
 
 		
-		EasyMock.createNiceMock(ApplicationController.Display.class);
+		EasyMock.createNiceMock(MainPresenter.Display.class);
 	}
 
 	protected <D> void easyBind(final Class<D> display) {
@@ -127,7 +127,7 @@ public class MyTestClientModule extends AbstractModule {
 		}
 	}
 
-	public static class MockedMainView implements ApplicationController.Display {
+	public static class MockedMainView implements MainPresenter.Display {
 		Widget w;
 		public void addWidget(Widget widget) {
 		}

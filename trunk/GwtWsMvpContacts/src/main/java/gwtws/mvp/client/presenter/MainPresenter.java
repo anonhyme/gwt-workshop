@@ -39,8 +39,8 @@ import com.google.inject.Inject;
 /**
  * Main presenter, it contains all presenters of the application
  */
-public class ApplicationController extends
-		WidgetContainerPresenter<ApplicationController.Display> {
+public class MainPresenter extends
+		WidgetContainerPresenter<MainPresenter.Display> {
 
 	public interface Display extends WidgetContainerDisplay {
 	}
@@ -49,7 +49,7 @@ public class ApplicationController extends
 	private EditContactPresenter editContactPresenter;
 
 	@Inject
-	public ApplicationController(PlaceManager pmngr, Display display,
+	public MainPresenter(PlaceManager pmngr, Display display,
 			EventBus bus, ContactsPresenter p1, EditContactPresenter p2) {
 		super(display, bus, p1, p2);
 		contactsPresenter = p1;

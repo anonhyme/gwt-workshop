@@ -34,7 +34,7 @@ public class ContactsPresenterTest extends MyClientTestCase {
 
 	ContactsPresenter presenter = injector.getInstance(ContactsPresenter.class);
 	ContactsPresenter.Display contactsDspl = presenter.getDisplay();
-	ApplicationController controller = injector.getInstance(ApplicationController.class);
+	MainPresenter controller = injector.getInstance(MainPresenter.class);
 	
   public void testContactSort() {
     ArrayList<ContactDetails> contactDetails = new ArrayList<ContactDetails>();

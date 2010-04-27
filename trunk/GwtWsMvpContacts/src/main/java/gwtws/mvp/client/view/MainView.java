@@ -1,13 +1,13 @@
 package gwtws.mvp.client.view;
 
-import gwtws.mvp.client.presenter.ApplicationController;
+import gwtws.mvp.client.presenter.MainPresenter;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MainView extends Composite implements ApplicationController.Display {
+public class MainView extends Composite implements MainPresenter.Display {
 
 	static Panel p = RootPanel.get();
 

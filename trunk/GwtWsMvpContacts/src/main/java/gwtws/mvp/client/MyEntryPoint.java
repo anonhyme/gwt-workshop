@@ -1,8 +1,8 @@
 package gwtws.mvp.client;
 
-import gwtws.mvp.client.gin.MyGinjector;
+import gwtws.mvp.client.gin.MyClientInjector;
 import gwtws.mvp.client.place.MyPlaceManager;
-import gwtws.mvp.client.presenter.ApplicationController;
+import gwtws.mvp.client.presenter.MainPresenter;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -12,10 +12,10 @@ import com.google.gwt.core.client.GWT;
  */
 public class MyEntryPoint implements EntryPoint {
 
-	private final MyGinjector injector = GWT.create(MyGinjector.class);
+	private final MyClientInjector injector = GWT.create(MyClientInjector.class);
 
 	public void onModuleLoad() {
-		ApplicationController appPresenter = injector.getAppPresenter();
+		MainPresenter appPresenter = injector.getAppPresenter();
 		appPresenter.bind();
 		appPresenter.revealDisplay();
 		

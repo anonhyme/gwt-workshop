@@ -30,14 +30,18 @@ import org.easymock.EasyMock;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ApplicationControllerTest extends MyClientTestCase {
+public class MainPresenterTest extends MyClientTestCase {
 
-	ApplicationController presenter = injector.getInstance(ApplicationController.class);
-	ApplicationController.Display appDspl = presenter.getDisplay();
-	ContactsPresenter contactsPresenter = injector.getInstance(ContactsPresenter.class);
-	ContactsPresenter.Display contactsDspl = injector.getInstance(ContactsPresenter.Display.class);
-	EditContactPresenter.Display editDspl = injector.getInstance(EditContactPresenter.Display.class);
-	
+	MainPresenter presenter = injector
+			.getInstance(MainPresenter.class);
+	MainPresenter.Display appDspl = presenter.getDisplay();
+	ContactsPresenter contactsPresenter = injector
+			.getInstance(ContactsPresenter.class);
+	ContactsPresenter.Display contactsDspl = injector
+			.getInstance(ContactsPresenter.Display.class);
+	EditContactPresenter.Display editDspl = injector
+			.getInstance(EditContactPresenter.Display.class);
+
 	public void testApplicationController() throws Exception {
 		HasClickHandlers addBtn = EasyMock.createNiceMock(HasClickHandlers.class);
 		HasClickHandlers delBtn = EasyMock.createNiceMock(HasClickHandlers.class);
@@ -45,16 +49,16 @@ public class ApplicationControllerTest extends MyClientTestCase {
 		EasyMock.expect(contactsDspl.getAddButton()).andReturn(addBtn);
 		EasyMock.expect(contactsDspl.getDeleteButton()).andReturn(delBtn);
 		EasyMock.expect(contactsDspl.getList()).andReturn(list);
-		EasyMock.expect(contactsDspl.asWidget()).andReturn(new Widget()).anyTimes() ;
+		EasyMock.expect(contactsDspl.asWidget()).andReturn(new Widget()).anyTimes();
 		EasyMock.replay(contactsDspl);
-		
+
 		assertNull(appDspl.asWidget());
 		presenter.onBind();
 		assertEquals(contactsDspl.asWidget(), appDspl.asWidget());
-		
+
 		eventBus.fireEvent(new AddContactEvent());
 		assertEquals(editDspl.asWidget(), appDspl.asWidget());
-		
+
 		eventBus.fireEvent(new EditContactCancelledEvent());
 		assertEquals(contactsDspl.asWidget(), appDspl.asWidget());
 
