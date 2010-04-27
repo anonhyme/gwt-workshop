@@ -2,8 +2,4 @@
 <module>
   <!-- Inherit our applications main module.                      -->
   <inherits name='gwtws.mvp.Contacts'/>
-
-  <!-- Specify the path to any remote services.                   -->
-  <servlet path="/contacts/greet" class="gwtws.mvp.server.GreetingServiceImpl" />
-
 </module>
