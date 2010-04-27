@@ -15,7 +15,7 @@
 	</filter-mapping>
 
 	<listener>
-		<listener-class>gwtws.mvp.server.guice.MyGuiceServletConfig</listener-class>
+		<listener-class>gwtws.mvp.server.guice.MyServerInjector</listener-class>
 	</listener>
 
 	<!-- Default page to serve -->

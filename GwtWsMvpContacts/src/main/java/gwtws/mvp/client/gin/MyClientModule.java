@@ -22,7 +22,7 @@ package gwtws.mvp.client.gin;
 import gwtws.mvp.client.place.ContactsPresenterPlace;
 import gwtws.mvp.client.place.EditContactPlace;
 import gwtws.mvp.client.place.MyPlaceManager;
-import gwtws.mvp.client.presenter.ApplicationController;
+import gwtws.mvp.client.presenter.MainPresenter;
 import gwtws.mvp.client.presenter.ContactsPresenter;
 import gwtws.mvp.client.presenter.EditContactPresenter;
 import gwtws.mvp.client.view.MainView;
@@ -47,8 +47,8 @@ public class MyClientModule extends AbstractPresenterModule {
 		bind(TokenFormatter.class).to(ParameterTokenFormatter.class);
 		bind(PlaceManager.class).to(MyPlaceManager.class);
 
-		bindPresenter(ApplicationController.class,
-				ApplicationController.Display.class, MainView.class);
+		bindPresenter(MainPresenter.class,
+				MainPresenter.Display.class, MainView.class);
 		bindPresenter(ContactsPresenter.class, ContactsPresenter.Display.class,
 				ContactsView.class);
 		bindPresenter(EditContactPresenter.class,
