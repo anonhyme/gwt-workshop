@@ -25,13 +25,10 @@ import net.customware.gwt.presenter.client.place.TokenFormatter;
 
 import com.google.inject.Inject;
 
-/**
- * PlaceManager implementation
- */
-public class MyPlaceManager extends DefaultPlaceManager {
+public class PlaceManager extends DefaultPlaceManager {
 
 	@Inject
-	public MyPlaceManager(EventBus eventBus, TokenFormatter formater,
+	public PlaceManager(EventBus eventBus, TokenFormatter formater,
 			ContactsPresenterPlace pres1, EditContactPlace pres2) {
 		super(eventBus, formater, pres1, pres2);
 	}

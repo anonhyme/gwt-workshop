@@ -1,7 +1,7 @@
 package gwtws.mvp.server;
 
-import gwtws.mvp.shared.Contact;
-import gwtws.mvp.shared.ContactDetails;
+import gwtws.mvp.shared.pojo.Contact;
+import gwtws.mvp.shared.pojo.ContactDetails;
 
 import java.util.ArrayList;
 

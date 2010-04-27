@@ -18,7 +18,7 @@
  ****************************************************************/
 package gwtws.mvp.client.presenter;
 
-import gwtws.mvp.client.MyClientTestCase;
+import gwtws.mvp.client.ClientTestCase;
 import gwtws.mvp.client.event.AddContactEvent;
 
 import java.util.Arrays;
@@ -30,7 +30,7 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 
-public class EditContactPresenterTest extends MyClientTestCase {
+public class EditContactPresenterTest extends ClientTestCase {
 
 	MainPresenter controller = injector.getInstance(MainPresenter.class);
 	MainPresenter.Display appDspl = controller.getDisplay();

@@ -1,14 +1,13 @@
 package gwtws.mvp.client.presenter;
 
-import gwtws.mvp.client.MyCallback;
 import gwtws.mvp.client.event.AddContactEvent;
 import gwtws.mvp.client.event.ContactDeletedEvent;
 import gwtws.mvp.client.event.EditContactEvent;
-import gwtws.mvp.shared.ContactDetails;
-import gwtws.mvp.shared.rpc.DeleteContacts;
-import gwtws.mvp.shared.rpc.DeleteContactsResult;
-import gwtws.mvp.shared.rpc.GetContactDetails;
-import gwtws.mvp.shared.rpc.GetContactDetailsResult;
+import gwtws.mvp.shared.cmd.DeleteContacts;
+import gwtws.mvp.shared.cmd.DeleteContactsResult;
+import gwtws.mvp.shared.cmd.GetContactDetails;
+import gwtws.mvp.shared.cmd.GetContactDetailsResult;
+import gwtws.mvp.shared.pojo.ContactDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +108,7 @@ public class ContactsPresenter extends
 
 	protected void fetchContactDetails() {
 		dispatcher.execute(new GetContactDetails(),
-				new MyCallback<GetContactDetailsResult>(dispatcher, eventBus) {
+				new CallBack<GetContactDetailsResult>(dispatcher, eventBus) {
 					public void callback(GetContactDetailsResult result) {
 						contactDetails = result.getContactList();
 						sortContactDetails();
@@ -129,7 +128,7 @@ public class ContactsPresenter extends
 			ids.add(contactDetails.get(selectedRows.get(i)).getId());
 		}
 		dispatcher.execute(new DeleteContacts(ids),
-				new MyCallback<DeleteContactsResult>(dispatcher, eventBus) {
+				new CallBack<DeleteContactsResult>(dispatcher, eventBus) {
 					@Override
 					public void callback(DeleteContactsResult result) {
 						eventBus.fireEvent(new ContactDeletedEvent());

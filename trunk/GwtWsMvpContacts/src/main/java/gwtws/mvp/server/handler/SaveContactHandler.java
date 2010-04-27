@@ -1,9 +1,9 @@
 package gwtws.mvp.server.handler;
 
 import gwtws.mvp.server.ContactDao;
-import gwtws.mvp.shared.Contact;
-import gwtws.mvp.shared.rpc.SaveContact;
-import gwtws.mvp.shared.rpc.SaveContactResult;
+import gwtws.mvp.shared.cmd.SaveContact;
+import gwtws.mvp.shared.cmd.SaveContactResult;
+import gwtws.mvp.shared.pojo.Contact;
 import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.shared.ActionException;

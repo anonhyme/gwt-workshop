@@ -16,60 +16,27 @@
  * specific language governing permissions and limitations      *
  * under the License.                                           *
  ****************************************************************/
-
 package gwtws.mvp.client;
 
-import gwtws.mvp.client.event.FlashEvent;
-import net.customware.gwt.dispatch.client.DispatchAsync;
-import net.customware.gwt.presenter.client.Display;
+import gwtws.mvp.client.guice.ClientTestModule;
+import gwtws.mvp.server.guice.ServerModule;
+import junit.framework.TestCase;
 import net.customware.gwt.presenter.client.EventBus;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.inject.Inject;
+import com.google.gwt.junit.GWTMockUtilities;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
-public abstract class MyCallback<T> implements AsyncCallback<T> {
-
-	@SuppressWarnings("unused")
-	private DispatchAsync dispatcher = null;
-	@SuppressWarnings("unused")
-	private Display display = null;
-
-	private EventBus eventBus = null;
-
-	@Inject
-	public MyCallback(DispatchAsync dispatcher, EventBus bus) {
-		this.dispatcher = dispatcher;
-		this.eventBus = bus;
-	}
-	
-	/**
-	 * The callback code which the user has to implement
-	 * 
-	 * @param result
-	 */
-	public abstract void callback(T result);
-
-	/**
-	 * The callback code in the case of error Override this method, if you need
-	 * this feature.
-	 * 
-	 * @param result
-	 */
-	public void callbackError(Throwable originalCaught) {
-		eventBus.fireEvent(new FlashEvent(originalCaught));
+/**
+ * Base class for testing presenters. 
+ * Tests extending this class only work in the JVM.
+ */
+public abstract class ClientTestCase extends TestCase {
+	// Disarm GWT.create
+	static {
+		GWTMockUtilities.disarm();
 	}
 
-	/**
-	 * If you override this method, remember to call super.onFailure()
-	 */
-	public void onFailure(Throwable caught) {
-		callbackError(caught);
-	}
-
-	/**
-	 * If you override this method, remember to call super.onSuccess()
-	 */
-	public void onSuccess(T result) {
-		callback(result);
-	}
+	protected Injector injector = Guice.createInjector(new ServerModule(), new ClientTestModule());
+	protected EventBus eventBus = injector.getInstance(EventBus.class);
 }

@@ -1,6 +1,6 @@
-package gwtws.mvp.shared.rpc;
+package gwtws.mvp.shared.cmd;
 
-import gwtws.mvp.shared.ContactDetails;
+import gwtws.mvp.shared.pojo.ContactDetails;
 
 import java.util.List;
 
@@ -21,5 +21,4 @@ public class GetContactDetailsResult implements Result {
 	public List<ContactDetails> getContactList() {
 		return contactsList;
 	}
-
 }

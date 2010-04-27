@@ -18,7 +18,7 @@
  ****************************************************************/
 package gwtws.mvp.client.presenter;
 
-import gwtws.mvp.client.MyClientTestCase;
+import gwtws.mvp.client.ClientTestCase;
 import gwtws.mvp.client.event.AddContactEvent;
 import gwtws.mvp.client.event.ContactDeletedEvent;
 import gwtws.mvp.client.event.ContactUpdatedEvent;
@@ -30,7 +30,7 @@ import org.easymock.EasyMock;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MainPresenterTest extends MyClientTestCase {
+public class MainPresenterTest extends ClientTestCase {
 
 	MainPresenter presenter = injector
 			.getInstance(MainPresenter.class);

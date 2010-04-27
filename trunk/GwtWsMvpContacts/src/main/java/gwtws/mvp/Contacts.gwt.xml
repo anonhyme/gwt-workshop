@@ -11,7 +11,7 @@
   <inherits name="com.google.gwt.inject.Inject"/>
 
   <!-- Specify the app entry point class.                         -->
-  <entry-point class='gwtws.mvp.client.MyEntryPoint'/>
+  <entry-point class='gwtws.mvp.client.Contacts'/>
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>

@@ -18,8 +18,8 @@
  ****************************************************************/
 package gwtws.mvp.client.presenter;
 
-import gwtws.mvp.client.MyClientTestCase;
-import gwtws.mvp.shared.ContactDetails;
+import gwtws.mvp.client.ClientTestCase;
+import gwtws.mvp.shared.pojo.ContactDetails;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ import org.easymock.EasyMock;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ContactsPresenterTest extends MyClientTestCase {
+public class ContactsPresenterTest extends ClientTestCase {
 
 	ContactsPresenter presenter = injector.getInstance(ContactsPresenter.class);
 	ContactsPresenter.Display contactsDspl = presenter.getDisplay();
