@@ -161,6 +161,19 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>emma-maven-plugin</artifactId>
+        <inherited>true</inherited>
+        <configuration>
+          <filters>
+            <filter>-gwtws.mvp.client.view.*</filter>
+            <filter>-gwtws.mvp.client.gin.*</filter>
+            <filter>-gwtws.mvp.client.place.*</filter>
+          </filters>
+        </configuration>
+      </plugin>
       
     </plugins>
   </build>
