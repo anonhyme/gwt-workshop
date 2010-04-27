@@ -18,7 +18,7 @@
  ****************************************************************/
 package gwtws.mvp.client.gin;
 
-import gwtws.mvp.client.presenter.MyAppController;
+import gwtws.mvp.client.presenter.ApplicationController;
 import gwtws.mvp.client.presenter.ContactsPresenter;
 import gwtws.mvp.client.presenter.EditContactPresenter;
 import net.customware.gwt.dispatch.client.gin.ClientDispatchModule;
@@ -31,7 +31,7 @@ import com.google.gwt.inject.client.Ginjector;
 @GinModules( { ClientDispatchModule.class, MyClientModule.class })
 public interface MyGinjector extends Ginjector {
 	
-	public MyAppController getAppPresenter();
+	public ApplicationController getAppPresenter();
 	public ContactsPresenter getContactsPresenter();
 	public EditContactPresenter getEditContactPresenter();
 

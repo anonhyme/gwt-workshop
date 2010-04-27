@@ -18,6 +18,7 @@ import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.inject.Inject;
 
@@ -28,11 +29,11 @@ public class EditContactPresenter extends
 
 		HasClickHandlers getCancelButton();
 
-		HasValue<String> getFirstName();
+		HasText getFirstName();
 
-		HasValue<String> getLastName();
+		HasText getLastName();
 
-		HasValue<String> getEmailAddress();
+		HasText getEmailAddress();
 	}
 
 	private Contact contact = new Contact();
@@ -63,10 +64,10 @@ public class EditContactPresenter extends
 		});
 	}
 
-	private void doSave() {
-		contact.setFirstName(display.getFirstName().getValue());
-		contact.setLastName(display.getLastName().getValue());
-		contact.setEmailAddress(display.getEmailAddress().getValue());
+	protected void doSave() {
+		contact.setFirstName(display.getFirstName().getText());
+		contact.setLastName(display.getLastName().getText());
+		contact.setEmailAddress(display.getEmailAddress().getText());
 
 		if (contact.getId() == null) {
 			dispatcher.execute(new AddContact(contact),
@@ -103,9 +104,9 @@ public class EditContactPresenter extends
 	}
 	
 	private void refresh() {
-		display.getFirstName().setValue(contact.getFirstName());
-		display.getLastName().setValue(contact.getLastName());
-		display.getEmailAddress().setValue(contact.getEmailAddress());
+		display.getFirstName().setText(contact.getFirstName());
+		display.getLastName().setText(contact.getLastName());
+		display.getEmailAddress().setText(contact.getEmailAddress());
 	}
 	
 	public String getId() {

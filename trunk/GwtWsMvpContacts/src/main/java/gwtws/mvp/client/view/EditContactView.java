@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.HasValue;
+import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
@@ -62,15 +62,15 @@ public class EditContactView extends Composite implements EditContactPresenter.D
     firstName.setFocus(true);
   }
   
-  public HasValue<String> getFirstName() {
+  public HasText getFirstName() {
     return firstName;
   }
 
-  public HasValue<String> getLastName() {
+  public HasText getLastName() {
     return lastName;
   }
 
-  public HasValue<String> getEmailAddress() {
+  public HasText getEmailAddress() {
     return emailAddress;
   }
 

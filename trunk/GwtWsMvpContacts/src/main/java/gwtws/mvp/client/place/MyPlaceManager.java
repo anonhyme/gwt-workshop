@@ -28,13 +28,12 @@ import com.google.inject.Inject;
 /**
  * PlaceManager implementation
  */
-public class MyPlaceManager extends DefaultPlaceManager{
-	
-  @Inject
-  public MyPlaceManager(EventBus eventBus, TokenFormatter formater,
-  		ContactsPresenterPlace pres1, 
-  		EditContactPlace pres2) {
-      super(eventBus, formater, pres1, pres2);
-  }
+public class MyPlaceManager extends DefaultPlaceManager {
+
+	@Inject
+	public MyPlaceManager(EventBus eventBus, TokenFormatter formater,
+			ContactsPresenterPlace pres1, EditContactPlace pres2) {
+		super(eventBus, formater, pres1, pres2);
+	}
 
 }
