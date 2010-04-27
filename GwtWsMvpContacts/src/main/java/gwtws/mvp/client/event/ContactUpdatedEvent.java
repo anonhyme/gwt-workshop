@@ -1,6 +1,6 @@
 package gwtws.mvp.client.event;
 
-import gwtws.mvp.shared.Contact;
+import gwtws.mvp.shared.pojo.Contact;
 
 import com.google.gwt.event.shared.GwtEvent;
 

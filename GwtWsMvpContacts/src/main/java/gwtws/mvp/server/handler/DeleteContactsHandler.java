@@ -1,9 +1,9 @@
 package gwtws.mvp.server.handler;
 
 import gwtws.mvp.server.ContactDao;
-import gwtws.mvp.shared.ContactDetails;
-import gwtws.mvp.shared.rpc.DeleteContacts;
-import gwtws.mvp.shared.rpc.DeleteContactsResult;
+import gwtws.mvp.shared.cmd.DeleteContacts;
+import gwtws.mvp.shared.cmd.DeleteContactsResult;
+import gwtws.mvp.shared.pojo.ContactDetails;
 
 import java.util.List;
 

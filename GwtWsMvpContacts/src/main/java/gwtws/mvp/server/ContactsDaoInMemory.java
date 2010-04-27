@@ -1,7 +1,7 @@
 package gwtws.mvp.server;
 
-import gwtws.mvp.shared.Contact;
-import gwtws.mvp.shared.ContactDetails;
+import gwtws.mvp.shared.pojo.Contact;
+import gwtws.mvp.shared.pojo.ContactDetails;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,51 +52,23 @@ public class ContactsDaoInMemory implements ContactDao {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.google.gwt.sample.contacts.server.ContactDao#addContact(com.google.
-	 * gwt.sample.contacts.shared.Contact)
-	 */
 	public Contact addContact(Contact contact) {
 		contact.setId(String.valueOf(contacts.size()));
 		contacts.put(contact.getId(), contact);
 		return contact;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.google.gwt.sample.contacts.server.ContactDao#updateContact(com.google
-	 * .gwt.sample.contacts.shared.Contact)
-	 */
 	public Contact updateContact(Contact contact) {
 		contacts.remove(contact.getId());
 		contacts.put(contact.getId(), contact);
 		return contact;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.google.gwt.sample.contacts.server.ContactDao#deleteContact(java.lang
-	 * .String)
-	 */
 	public Boolean deleteContact(String id) {
 		contacts.remove(id);
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.google.gwt.sample.contacts.server.ContactDao#deleteContacts(java.util
-	 * .ArrayList)
-	 */
 	public ArrayList<ContactDetails> deleteContacts(ArrayList<String> ids) {
 
 		for (int i = 0; i < ids.size(); ++i) {
@@ -106,11 +78,6 @@ public class ContactsDaoInMemory implements ContactDao {
 		return getContactDetails();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.google.gwt.sample.contacts.server.ContactDao#getContactDetails()
-	 */
 	public ArrayList<ContactDetails> getContactDetails() {
 		ArrayList<ContactDetails> contactDetails = new ArrayList<ContactDetails>();
 
@@ -123,13 +90,6 @@ public class ContactsDaoInMemory implements ContactDao {
 		return contactDetails;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.google.gwt.sample.contacts.server.ContactDao#getContact(java.lang.String
-	 * )
-	 */
 	public Contact getContact(String id) {
 		return contacts.get(id);
 	}

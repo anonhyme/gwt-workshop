@@ -1,4 +1,4 @@
-package gwtws.mvp.shared;
+package gwtws.mvp.shared.pojo;
 
 import java.io.Serializable;
 

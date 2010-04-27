@@ -1,4 +1,4 @@
-package gwtws.mvp.shared.rpc;
+package gwtws.mvp.shared.cmd;
 
 import net.customware.gwt.dispatch.shared.Action;
 

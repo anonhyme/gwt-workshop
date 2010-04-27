@@ -1,9 +1,9 @@
 package gwtws.mvp.server.handler;
 
 import gwtws.mvp.server.ContactDao;
-import gwtws.mvp.shared.Contact;
-import gwtws.mvp.shared.rpc.GetContact;
-import gwtws.mvp.shared.rpc.GetContactResult;
+import gwtws.mvp.shared.cmd.GetContact;
+import gwtws.mvp.shared.cmd.GetContactResult;
+import gwtws.mvp.shared.pojo.Contact;
 import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.shared.ActionException;

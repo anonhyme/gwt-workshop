@@ -16,47 +16,28 @@
  * specific language governing permissions and limitations      *
  * under the License.                                           *
  ****************************************************************/
-
 package gwtws.mvp.client.gin;
 
-import gwtws.mvp.client.place.ContactsPresenterPlace;
-import gwtws.mvp.client.place.EditContactPlace;
-import gwtws.mvp.client.place.MyPlaceManager;
 import gwtws.mvp.client.presenter.MainPresenter;
 import gwtws.mvp.client.presenter.ContactsPresenter;
 import gwtws.mvp.client.presenter.EditContactPresenter;
-import gwtws.mvp.client.view.MainView;
-import gwtws.mvp.client.view.ContactsView;
-import gwtws.mvp.client.view.EditContactView;
-import net.customware.gwt.presenter.client.DefaultEventBus;
+import net.customware.gwt.dispatch.client.gin.ClientDispatchModule;
 import net.customware.gwt.presenter.client.EventBus;
-import net.customware.gwt.presenter.client.gin.AbstractPresenterModule;
-import net.customware.gwt.presenter.client.place.ParameterTokenFormatter;
 import net.customware.gwt.presenter.client.place.PlaceManager;
-import net.customware.gwt.presenter.client.place.TokenFormatter;
 
-import com.google.inject.Singleton;
+import com.google.gwt.inject.client.GinModules;
+import com.google.gwt.inject.client.Ginjector;
 
-public class MyClientModule extends AbstractPresenterModule {
+@GinModules( { ClientDispatchModule.class, ClientModule.class })
+public interface ClientInjector extends Ginjector {
+	
+	public MainPresenter getAppPresenter();
 
-	@Override
-	protected void configure() {
+	public ContactsPresenter getContactsPresenter();
+	
+	public EditContactPresenter getEditContactPresenter();
 
-		bind(EventBus.class).to(DefaultEventBus.class).in(Singleton.class);
+	public PlaceManager getPlaceManager();
 
-		bind(TokenFormatter.class).to(ParameterTokenFormatter.class);
-		bind(PlaceManager.class).to(MyPlaceManager.class);
-
-		bindPresenter(MainPresenter.class,
-				MainPresenter.Display.class, MainView.class);
-		bindPresenter(ContactsPresenter.class, ContactsPresenter.Display.class,
-				ContactsView.class);
-		bindPresenter(EditContactPresenter.class,
-				EditContactPresenter.Display.class, EditContactView.class);
-
-		bind(ContactsPresenterPlace.class).in(Singleton.class);
-		bind(EditContactPlace.class).in(Singleton.class);
-
-	}
-
+	public EventBus getEventBus();
 }

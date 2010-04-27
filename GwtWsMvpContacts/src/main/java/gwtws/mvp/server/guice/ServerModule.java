@@ -8,10 +8,20 @@ import gwtws.mvp.server.handler.GetContactHandler;
 import gwtws.mvp.server.handler.GetContactsDetailDetailHandler;
 import gwtws.mvp.server.handler.SaveContactHandler;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
+import net.customware.gwt.dispatch.server.service.DispatchServiceServlet;
 
 import com.google.inject.Module;
+import com.google.inject.servlet.ServletModule;
 
-public class MyServerModule extends ActionHandlerModule implements Module {
+public class ServerModule extends ActionHandlerModule implements Module {
+
+	public static class WebModule extends ServletModule {
+		@Override
+		public void configureServlets() {
+			serve("/contacts/dispatch").with(DispatchServiceServlet.class);
+		}
+	}
+
 	@Override
 	protected void configureHandlers() {
 		bindHandler(GetContactsDetailDetailHandler.class);
@@ -21,4 +31,5 @@ public class MyServerModule extends ActionHandlerModule implements Module {
 		bindHandler(DeleteContactsHandler.class);
 		bindHandler(AddContactHandler.class);
 	}
+
 }

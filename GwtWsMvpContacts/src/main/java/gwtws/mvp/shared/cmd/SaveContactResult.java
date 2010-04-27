@@ -1,24 +1,21 @@
-package gwtws.mvp.shared.rpc;
+package gwtws.mvp.shared.cmd;
 
-import gwtws.mvp.shared.Contact;
+import gwtws.mvp.shared.pojo.Contact;
 import net.customware.gwt.dispatch.shared.Result;
 
 @SuppressWarnings("serial")
-public class AddContactResult implements Result {
-
+public class SaveContactResult implements Result {
 	private Contact contact;
 
 	@SuppressWarnings("unused")
-	private AddContactResult() {
-
+	private SaveContactResult() {
 	}
 
-	public AddContactResult(Contact contact) {
+	public SaveContactResult(Contact contact) {
 		this.contact = contact;
 	}
 
 	public Contact getContact() {
 		return contact;
 	}
-
 }

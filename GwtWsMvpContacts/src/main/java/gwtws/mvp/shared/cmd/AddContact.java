@@ -1,8 +1,8 @@
-package gwtws.mvp.shared.rpc;
+package gwtws.mvp.shared.cmd;
 
 import net.customware.gwt.dispatch.shared.Action;
 
-import gwtws.mvp.shared.Contact;
+import gwtws.mvp.shared.pojo.Contact;
 
 @SuppressWarnings("serial")
 public class AddContact implements Action<AddContactResult> {

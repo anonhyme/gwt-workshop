@@ -1,15 +1,14 @@
 package gwtws.mvp.client.presenter;
 
-import gwtws.mvp.client.MyCallback;
 import gwtws.mvp.client.event.ContactUpdatedEvent;
 import gwtws.mvp.client.event.EditContactCancelledEvent;
-import gwtws.mvp.shared.Contact;
-import gwtws.mvp.shared.rpc.AddContact;
-import gwtws.mvp.shared.rpc.AddContactResult;
-import gwtws.mvp.shared.rpc.GetContact;
-import gwtws.mvp.shared.rpc.GetContactResult;
-import gwtws.mvp.shared.rpc.SaveContact;
-import gwtws.mvp.shared.rpc.SaveContactResult;
+import gwtws.mvp.shared.cmd.AddContact;
+import gwtws.mvp.shared.cmd.AddContactResult;
+import gwtws.mvp.shared.cmd.GetContact;
+import gwtws.mvp.shared.cmd.GetContactResult;
+import gwtws.mvp.shared.cmd.SaveContact;
+import gwtws.mvp.shared.cmd.SaveContactResult;
+import gwtws.mvp.shared.pojo.Contact;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.widget.WidgetDisplay;
@@ -19,7 +18,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.HasText;
-import com.google.gwt.user.client.ui.HasValue;
 import com.google.inject.Inject;
 
 public class EditContactPresenter extends
@@ -71,44 +69,46 @@ public class EditContactPresenter extends
 
 		if (contact.getId() == null) {
 			dispatcher.execute(new AddContact(contact),
-					new MyCallback<AddContactResult>(dispatcher, eventBus) {
+					new CallBack<AddContactResult>(dispatcher, eventBus) {
 						public void callback(AddContactResult result) {
 							eventBus.fireEvent(new ContactUpdatedEvent(result.getContact()));
 						}
 					});
 		} else {
 			dispatcher.execute(new SaveContact(contact),
-					new MyCallback<SaveContactResult>(dispatcher, eventBus) {
+					new CallBack<SaveContactResult>(dispatcher, eventBus) {
 						public void callback(SaveContactResult result) {
 							eventBus.fireEvent(new ContactUpdatedEvent(result.getContact()));
 						}
 					});
 		}
 	}
-	
-	String id ;
-	
+
+	String id;
+
 	public void setId(String id) {
 		this.id = id;
 		if (id == null) {
 			contact = new Contact();
 			refresh();
 		} else {
-			dispatcher.execute(new GetContact(id), new MyCallback<GetContactResult>(dispatcher, eventBus) {
+			dispatcher.execute(new GetContact(id), new CallBack<GetContactResult>(
+					dispatcher, eventBus) {
 				public void callback(GetContactResult result) {
-					contact = result.getContact() != null ? result.getContact() : new Contact();
+					contact = result.getContact() != null ? result.getContact()
+							: new Contact();
 					refresh();
 				}
 			});
 		}
 	}
-	
+
 	private void refresh() {
 		display.getFirstName().setText(contact.getFirstName());
 		display.getLastName().setText(contact.getLastName());
 		display.getEmailAddress().setText(contact.getEmailAddress());
 	}
-	
+
 	public String getId() {
 		return id;
 	}

@@ -36,12 +36,10 @@ import org.easymock.EasyMock;
 
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasText;
-import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
@@ -53,9 +51,8 @@ import com.google.inject.Singleton;
  * @author manolo
  * 
  */
-public class MyTestClientModule extends AbstractModule {
+public class ClientTestModule extends AbstractModule {
 
-	// Override either, to change module behavior
 	protected DispatchAsync dispatchAsyncInstance = null;
 	protected Class<? extends DispatchAsync> dispatchAsyncClass = DispatchTestAsync.class;
 	
@@ -75,23 +72,20 @@ public class MyTestClientModule extends AbstractModule {
 		easyBind(PlaceManager.class);
 
 		bind(MainPresenter.class).asEagerSingleton();
-//		easyBind(MyAppController.Display.class);
 		bind(MainPresenter.Display.class).to(MockedMainView.class).asEagerSingleton();
 
 		bind(ContactsPresenter.class).asEagerSingleton();
 		easyBind(ContactsPresenter.Display.class);
 		
 		bind(EditContactPresenter.class).asEagerSingleton();
-//		easyBind(EditContactPresenter.Display.class);
 		bind(EditContactPresenter.Display.class).to(MockedEditContactsView.class).asEagerSingleton();
-
 		
 		EasyMock.createNiceMock(MainPresenter.Display.class);
 	}
 
-	protected <D> void easyBind(final Class<D> display) {
-		final D mockDisplay = EasyMock.createNiceMock(display);
-		bind(display).toInstance(mockDisplay);
+	protected <D> void easyBind(final Class<D> clazz) {
+		final D mockDisplay = EasyMock.createNiceMock(clazz);
+		bind(clazz).toInstance(mockDisplay);
 	}
 
 	static class DispatchTestService implements DispatchService {
