@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.customware.gwt.presenter</groupId>
+    <artifactId>gwt-presenter</artifactId>
+    <packaging>jar</packaging>
+    <version>1.1.1-replace-SNAPSHOT</version>
+    <name>GWT Presenter</name>
+    <url>http://code.google.com/p/gwt-presenter</url>
+
+    <description>This library provides a 'presenter' API implementation for GWT.</description>
+
+    <organization>
+        <name>customware.net</name>
+        <url>http://www.customware.net/</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>David Peterson</name>
+            <organization>customware.net</organization>
+            <organizationUrl>http://www.customware.net/</organizationUrl>
+            <roles>
+                <role>Original Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <issueManagement>
+        <system>Google Code</system>
+        <url>http://code.google.com/p/gwt-presenter/issues/list</url>
+    </issueManagement>
+
+    <properties>
+        <gwt.version>1.7.1</gwt.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.gwt.inject</groupId>
+            <artifactId>gin</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>google-code</id>
+            <name>GWT Presenter SVN Repository</name>
+            <url>svn:https://gwt-presenter.googlecode.com/svn/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>google-code</id>
+            <name>GWT Presenter SVN Repository</name>
+            <url>svn:https://gwt-presenter.googlecode.com/svn/maven2</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>
