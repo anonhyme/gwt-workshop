@@ -22,10 +22,10 @@ package gwtws.mvp.client.gin;
 import gwtws.mvp.client.place.ContactsPresenterPlace;
 import gwtws.mvp.client.place.EditContactPlace;
 import gwtws.mvp.client.place.MyPlaceManager;
-import gwtws.mvp.client.presenter.MyAppController;
+import gwtws.mvp.client.presenter.ApplicationController;
 import gwtws.mvp.client.presenter.ContactsPresenter;
 import gwtws.mvp.client.presenter.EditContactPresenter;
-import gwtws.mvp.client.view.MyAppMainView;
+import gwtws.mvp.client.view.MainView;
 import gwtws.mvp.client.view.ContactsView;
 import gwtws.mvp.client.view.EditContactView;
 import net.customware.gwt.presenter.client.DefaultEventBus;
@@ -47,8 +47,8 @@ public class MyClientModule extends AbstractPresenterModule {
 		bind(TokenFormatter.class).to(ParameterTokenFormatter.class);
 		bind(PlaceManager.class).to(MyPlaceManager.class);
 
-		bindPresenter(MyAppController.class,
-				MyAppController.Display.class, MyAppMainView.class);
+		bindPresenter(ApplicationController.class,
+				ApplicationController.Display.class, MainView.class);
 		bindPresenter(ContactsPresenter.class, ContactsPresenter.Display.class,
 				ContactsView.class);
 		bindPresenter(EditContactPresenter.class,

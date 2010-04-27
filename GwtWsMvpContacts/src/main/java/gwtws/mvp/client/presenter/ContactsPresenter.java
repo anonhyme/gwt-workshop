@@ -26,7 +26,7 @@ import com.google.inject.Inject;
 public class ContactsPresenter extends
 		WidgetPresenter<ContactsPresenter.Display> {
 
-	private List<ContactDetails> contactDetails;
+	protected List<ContactDetails> contactDetails;
 
 	public interface Display extends WidgetDisplay {
 		HasClickHandlers getAddButton();
@@ -82,8 +82,7 @@ public class ContactsPresenter extends
 		fetchContactDetails();
 	}
 
-	public void sortContactDetails() {
-
+	protected void sortContactDetails() {
 		// Yes, we could use a more optimized method of sorting, but the
 		// point is to create a test case that helps illustrate the higher
 		// level concepts used when creating MVP-based applications.
@@ -113,6 +112,7 @@ public class ContactsPresenter extends
 				new MyCallback<GetContactDetailsResult>(dispatcher, eventBus) {
 					public void callback(GetContactDetailsResult result) {
 						contactDetails = result.getContactList();
+						sortContactDetails();
 						List<String> data = new ArrayList<String>();
 						for (ContactDetails c : contactDetails) {
 							data.add(c.getDisplayName());
@@ -122,7 +122,7 @@ public class ContactsPresenter extends
 				});
 	}
 
-	private void deleteSelectedContacts() {
+	protected void deleteSelectedContacts() {
 		List<Integer> selectedRows = display.getSelectedRows();
 		ArrayList<String> ids = new ArrayList<String>();
 		for (int i = 0; i < selectedRows.size(); ++i) {
@@ -137,7 +137,7 @@ public class ContactsPresenter extends
 				});
 	}
 	
-	public void updateAndrevealDisplay() {
+	public void updateAndRevealDisplay() {
 		fetchContactDetails();
 		super.revealDisplay();
 	}

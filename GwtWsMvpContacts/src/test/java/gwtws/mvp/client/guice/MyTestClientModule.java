@@ -18,6 +18,9 @@
  ****************************************************************/
 package gwtws.mvp.client.guice;
 
+import gwtws.mvp.client.presenter.ContactsPresenter;
+import gwtws.mvp.client.presenter.EditContactPresenter;
+import gwtws.mvp.client.presenter.ApplicationController;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.client.service.DispatchService;
 import net.customware.gwt.dispatch.server.DefaultDispatch;
@@ -26,12 +29,20 @@ import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.Result;
 import net.customware.gwt.presenter.client.DefaultEventBus;
-import net.customware.gwt.presenter.client.Display;
 import net.customware.gwt.presenter.client.EventBus;
+import net.customware.gwt.presenter.client.place.PlaceManager;
 
 import org.easymock.EasyMock;
 
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HasValue;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -47,7 +58,7 @@ public class MyTestClientModule extends AbstractModule {
 	// Override either, to change module behavior
 	protected DispatchAsync dispatchAsyncInstance = null;
 	protected Class<? extends DispatchAsync> dispatchAsyncClass = DispatchTestAsync.class;
-
+	
 	@Override
 	protected void configure() {
 
@@ -57,15 +68,28 @@ public class MyTestClientModule extends AbstractModule {
 			bind(DispatchAsync.class).toInstance(dispatchAsyncInstance);
 		}
 
-		bind(EventBus.class).to(DefaultEventBus.class);
+		bind(EventBus.class).to(DefaultEventBus.class).asEagerSingleton();
 
 		bind(DispatchTestAsync.class);
+		
+		easyBind(PlaceManager.class);
 
-		// bindDisplay(ContactsPresenter.Display.class);
-		// bind(MessageSendPresenter.Display.class).to(MockMessageSendDisplay.class);
+		bind(ApplicationController.class).asEagerSingleton();
+//		easyBind(MyAppController.Display.class);
+		bind(ApplicationController.Display.class).to(MockedMainView.class).asEagerSingleton();
+
+		bind(ContactsPresenter.class).asEagerSingleton();
+		easyBind(ContactsPresenter.Display.class);
+		
+		bind(EditContactPresenter.class).asEagerSingleton();
+//		easyBind(EditContactPresenter.Display.class);
+		bind(EditContactPresenter.Display.class).to(MockedEditContactsView.class).asEagerSingleton();
+
+		
+		EasyMock.createNiceMock(ApplicationController.Display.class);
 	}
 
-	protected <D extends Display> void bindDisplay(final Class<D> display) {
+	protected <D> void easyBind(final Class<D> display) {
 		final D mockDisplay = EasyMock.createNiceMock(display);
 		bind(display).toInstance(mockDisplay);
 	}
@@ -100,6 +124,51 @@ public class MyTestClientModule extends AbstractModule {
 			} catch (ActionException e) {
 				callback.onFailure(e);
 			}
+		}
+	}
+
+	public static class MockedMainView implements ApplicationController.Display {
+		Widget w;
+		public void addWidget(Widget widget) {
+		}
+		public void removeWidget(Widget widget) {
+		}
+		public void showWidget(Widget widget) {
+			w = widget;
+		}
+		public Widget asWidget() {
+			return w;
+		}
+	}
+	
+	public static class MockedEditContactsView implements EditContactPresenter.Display {
+		HasClickHandlers aClick = new HasClickHandlers() {
+			public void fireEvent(GwtEvent<?> event) {
+			}
+			public HandlerRegistration addClickHandler(ClickHandler handler) {
+				return null;
+			}
+		};
+		Widget aWidget = new Widget();
+		HasText aText = EasyMock.createNiceMock(HasText.class);
+
+		public HasClickHandlers getCancelButton() {
+			return aClick;
+		}
+		public HasClickHandlers getSaveButton() {
+			return aClick;
+		}
+		public Widget asWidget() {
+			return aWidget;
+		}
+		public HasText getEmailAddress() {
+			return aText;
+		}
+		public HasText getFirstName() {
+			return aText;
+		}
+		public HasText getLastName() {
+			return aText;
 		}
 	}
 

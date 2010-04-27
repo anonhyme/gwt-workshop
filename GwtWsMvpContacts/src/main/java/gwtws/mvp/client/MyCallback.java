@@ -41,13 +41,7 @@ public abstract class MyCallback<T> implements AsyncCallback<T> {
 		this.dispatcher = dispatcher;
 		this.eventBus = bus;
 	}
-
-	@Inject
-	public MyCallback(DispatchAsync dispatcher, EventBus bus, Display display) {
-		this(dispatcher, bus);
-		this.display = display;
-	}
-
+	
 	/**
 	 * The callback code which the user has to implement
 	 * 

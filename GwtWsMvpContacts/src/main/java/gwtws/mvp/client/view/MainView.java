@@ -1,13 +1,13 @@
 package gwtws.mvp.client.view;
 
-import gwtws.mvp.client.presenter.MyAppController;
+import gwtws.mvp.client.presenter.ApplicationController;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MyAppMainView extends Composite implements MyAppController.Display {
+public class MainView extends Composite implements ApplicationController.Display {
 
 	static Panel p = RootPanel.get();
 
@@ -25,5 +25,4 @@ public class MyAppMainView extends Composite implements MyAppController.Display 
 	public Widget asWidget() {
 		return null;
 	}
-
 }

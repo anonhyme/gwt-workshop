@@ -29,33 +29,23 @@ import net.customware.gwt.presenter.client.EventBus;
 import com.google.gwt.junit.GWTMockUtilities;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.Module;
 
 /**
- * Base class for testing presenters.
- * Tests extending this class only work in jvm.
+ * Base class for testing presenters. Tests extending this class only work in
+ * jvm.
  * 
  * @author manolo
- *
+ * 
  */
-public abstract class HupaMvpTestCase extends TestCase {
-    
-    protected Injector injector = Guice.createInjector(getModules());
+public abstract class MyClientTestCase extends TestCase {
+	
+	static {
+		GWTMockUtilities.disarm();
+	}
 
-    protected HttpSession httpSession;
-    protected EventBus eventBus;
-    
-    protected Module[] getModules() {
-        return new Module[]{new MyServerModule(), new MyTestClientModule()};
-    }
+	protected Injector injector = Guice.createInjector(new MyServerModule(),
+			new MyTestClientModule());
 
-    @Override
-    protected void setUp() throws Exception {
-        try {
-            GWTMockUtilities.disarm();
-            httpSession = injector.getInstance(HttpSession.class);
-            eventBus = injector.getInstance(EventBus.class);
-        } catch (Exception e) {
-        }
-    }
+	protected EventBus eventBus = injector.getInstance(EventBus.class);
+
 }

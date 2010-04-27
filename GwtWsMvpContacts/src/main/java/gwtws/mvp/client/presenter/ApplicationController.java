@@ -39,8 +39,8 @@ import com.google.inject.Inject;
 /**
  * Main presenter, it contains all presenters of the application
  */
-public class MyAppController extends
-		WidgetContainerPresenter<MyAppController.Display> {
+public class ApplicationController extends
+		WidgetContainerPresenter<ApplicationController.Display> {
 
 	public interface Display extends WidgetContainerDisplay {
 	}
@@ -49,7 +49,7 @@ public class MyAppController extends
 	private EditContactPresenter editContactPresenter;
 
 	@Inject
-	public MyAppController(PlaceManager pmngr, Display display,
+	public ApplicationController(PlaceManager pmngr, Display display,
 			EventBus bus, ContactsPresenter p1, EditContactPresenter p2) {
 		super(display, bus, p1, p2);
 		contactsPresenter = p1;
@@ -79,13 +79,13 @@ public class MyAppController extends
 		eventBus.addHandler(ContactUpdatedEvent.TYPE,
 				new ContactUpdatedEventHandler() {
 					public void onContactUpdated(ContactUpdatedEvent event) {
-						contactsPresenter.updateAndrevealDisplay();
+						contactsPresenter.updateAndRevealDisplay();
 					}
 				});
 		eventBus.addHandler(ContactDeletedEvent.TYPE,
 				new ContactDeletedEventHandler() {
 					public void onContactDeleted(ContactDeletedEvent event) {
-						contactsPresenter.updateAndrevealDisplay();
+						contactsPresenter.updateAndRevealDisplay();
 					}
 				});
 
