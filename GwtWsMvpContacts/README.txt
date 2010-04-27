@@ -1,8 +1,24 @@
-This is a Gwt project using all components of a MVP + EventBus + CommandPattern architecture.
-It is inspired in the Contacts Application from google.
-It uses a bunch of libraries very useful for this pattern:
 
-gwt-presenter
-gwt-gin
-gwt-dispatch
-gwt-guice
+
+This is a Gwt sample app using all components of a MVP+EventBus+Command-Pattern architecture.
+
+It is inspired in:
+ - The Contacts Application from the article 'Large scale application development and MVP':
+   http://code.google.com/intl/es/webtoolkit/articles/mvp-architecture.html
+ - The mvp-gwt-adaptation of this application to use gwt-presenter, gwt-dispatch, gin and guice:
+   http://code.google.com/p/mvp-gwt-adaptation/
+ - The project Apache-Hupa
+   http://james.apache.org/hupa
+
+It is prepared to used with maven and eclipse and uses the latest versions of:
+ - gwt-presenter
+ - gwt-gin
+ - gwt-dispatch
+ - gwt-guice
+
+One of the interesting points is how to test all the code in the JVM, which is the main
+goal of a Gwt-Mvp application. The application has tests which covers the code in a 77%.
+
+
+
+Manuel Carrasco Moñino (28-April-2010)
