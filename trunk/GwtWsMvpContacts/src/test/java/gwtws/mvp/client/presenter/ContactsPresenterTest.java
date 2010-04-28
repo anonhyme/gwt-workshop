@@ -14,12 +14,12 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class ContactsPresenterTest extends ClientTestCase {
 
-	ContactsPresenter contactsPresenter = injector.getInstance(ContactsPresenter.class);
-	ContactsPresenter.Display contactsView = contactsPresenter.getDisplay();
-	MainPresenter mainPresenter = injector.getInstance(MainPresenter.class);
-	
-	
-	// Test the sort algorithm
+  ContactsPresenter contactsPresenter = injector.getInstance(ContactsPresenter.class);
+  ContactsPresenter.Display contactsView = contactsPresenter.getDisplay();
+  MainPresenter mainPresenter = injector.getInstance(MainPresenter.class);
+  
+  
+  // Test the sort algorithm
   public void testContactSort() {
     ArrayList<ContactDetails> contactDetails = new ArrayList<ContactDetails>();
     contactDetails.add(new ContactDetails("0", "c_contact"));
@@ -32,29 +32,29 @@ public class ContactsPresenterTest extends ClientTestCase {
     assertTrue(contactsPresenter.getContactDetail(2).getDisplayName().equals("c_contact"));
   }
   
-	public void testContactsPresenter() throws Exception {
-		
-		// Prepare the contacts view
-		HasClickHandlers addBtn = EasyMock.createNiceMock(HasClickHandlers.class);
-		HasClickHandlers delBtn = EasyMock.createNiceMock(HasClickHandlers.class);
-		HasClickHandlers list = EasyMock.createNiceMock(HasClickHandlers.class);
-		EasyMock.expect(contactsView.getAddButton()).andReturn(addBtn);
-		EasyMock.expect(contactsView.getDeleteButton()).andReturn(delBtn);
-		EasyMock.expect(contactsView.getList()).andReturn(list);
-		EasyMock.expect(contactsView.asWidget()).andReturn(new Widget()).anyTimes() ;
-		List<Integer> toDelete =  Arrays.asList(0, 10);
-		EasyMock.expect(contactsView.getSelectedRows()).andReturn(toDelete);
-		EasyMock.replay(contactsView);
+  public void testContactsPresenter() throws Exception {
+    
+    // Prepare the contacts view
+    HasClickHandlers addBtn = EasyMock.createNiceMock(HasClickHandlers.class);
+    HasClickHandlers delBtn = EasyMock.createNiceMock(HasClickHandlers.class);
+    HasClickHandlers list = EasyMock.createNiceMock(HasClickHandlers.class);
+    EasyMock.expect(contactsView.getAddButton()).andReturn(addBtn);
+    EasyMock.expect(contactsView.getDeleteButton()).andReturn(delBtn);
+    EasyMock.expect(contactsView.getList()).andReturn(list);
+    EasyMock.expect(contactsView.asWidget()).andReturn(new Widget()).anyTimes() ;
+    List<Integer> toDelete =  Arrays.asList(0, 10);
+    EasyMock.expect(contactsView.getSelectedRows()).andReturn(toDelete);
+    EasyMock.replay(contactsView);
 
-		// When the application starts, it gets all the contact from the server
-		mainPresenter.onBind();
-		assertEquals(22, contactsPresenter.contactDetails.size());
-		assertEquals("Abigail Louis", contactsPresenter.contactDetails.get(0).getDisplayName());
-	
-		// Delete two contacts
-		contactsPresenter.deleteSelectedContacts();
-		assertEquals(20, contactsPresenter.contactDetails.size());
-		assertEquals("Bell Snedden", contactsPresenter.contactDetails.get(0).getDisplayName());
-	}
-	
+    // When the application starts, it gets all the contact from the server
+    mainPresenter.onBind();
+    assertEquals(22, contactsPresenter.getContactDetails().size());
+    assertEquals("Abigail Louis", contactsPresenter.getContactDetails().get(0).getDisplayName());
+  
+    // Delete two contacts
+    contactsPresenter.deleteSelectedContacts();
+    assertEquals(20, contactsPresenter.getContactDetails().size());
+    assertEquals("Bell Snedden", contactsPresenter.getContactDetails().get(0).getDisplayName());
+  }
+  
 }

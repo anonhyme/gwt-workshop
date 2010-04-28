@@ -14,29 +14,29 @@ import net.customware.gwt.dispatch.shared.ActionException;
 import com.google.inject.Inject;
 
 public class DeleteContactsHandler implements
-		ActionHandler<DeleteContacts, DeleteContactsResult> {
+    ActionHandler<DeleteContacts, DeleteContactsResult> {
 
-	private ContactDao contactDao;
+  private ContactDao contactDao;
 
-	@Inject
-	public DeleteContactsHandler(ContactDao contactDao) {
-		super();
-		this.contactDao = contactDao;
-	}
+  @Inject
+  public DeleteContactsHandler(ContactDao contactDao) {
+    super();
+    this.contactDao = contactDao;
+  }
 
-	public DeleteContactsResult execute(DeleteContacts deleteContacts,
-			ExecutionContext context) throws ActionException {
-		List<ContactDetails> contactDetails = contactDao
-				.deleteContacts(deleteContacts.getIds());
-		return new DeleteContactsResult(contactDetails);
-	}
+  public DeleteContactsResult execute(DeleteContacts deleteContacts,
+      ExecutionContext context) throws ActionException {
+    List<ContactDetails> contactDetails = contactDao
+        .deleteContacts(deleteContacts.getIds());
+    return new DeleteContactsResult(contactDetails);
+  }
 
-	public Class<DeleteContacts> getActionType() {
-		return DeleteContacts.class;
-	}
+  public Class<DeleteContacts> getActionType() {
+    return DeleteContacts.class;
+  }
 
-	public void rollback(DeleteContacts action, DeleteContactsResult result,
-			ExecutionContext context) throws ActionException {
-	}
+  public void rollback(DeleteContacts action, DeleteContactsResult result,
+      ExecutionContext context) throws ActionException {
+  }
 
 }

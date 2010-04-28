@@ -10,32 +10,32 @@ import net.customware.gwt.dispatch.shared.ActionException;
 import com.google.inject.Inject;
 
 public class GetContactsDetailDetailHandler implements
-		ActionHandler<GetContactDetails, GetContactDetailsResult> {
+    ActionHandler<GetContactDetails, GetContactDetailsResult> {
 
-	private ContactDao contactsDao;
+  private ContactDao contactsDao;
 
-	@Inject
-	public GetContactsDetailDetailHandler(ContactDao contactsDao) {
-		this.contactsDao = contactsDao;
-	}
+  @Inject
+  public GetContactsDetailDetailHandler(ContactDao contactsDao) {
+    this.contactsDao = contactsDao;
+  }
 
-	public GetContactDetailsResult execute(GetContactDetails action,
-			ExecutionContext context) throws ActionException {
+  public GetContactDetailsResult execute(GetContactDetails action,
+      ExecutionContext context) throws ActionException {
 
-		GetContactDetailsResult getContactDetailsResult = new GetContactDetailsResult();
+    GetContactDetailsResult getContactDetailsResult = new GetContactDetailsResult();
 
-		getContactDetailsResult.setContactsList(contactsDao.getContactDetails());
+    getContactDetailsResult.setContactsList(contactsDao.getContactDetails());
 
-		return getContactDetailsResult;
+    return getContactDetailsResult;
 
-	}
+  }
 
-	public Class<GetContactDetails> getActionType() {
-		return GetContactDetails.class;
-	}
+  public Class<GetContactDetails> getActionType() {
+    return GetContactDetails.class;
+  }
 
-	public void rollback(GetContactDetails action,
-			GetContactDetailsResult result, ExecutionContext context)
-			throws ActionException {
-	}
+  public void rollback(GetContactDetails action,
+      GetContactDetailsResult result, ExecutionContext context)
+      throws ActionException {
+  }
 }

@@ -24,7 +24,7 @@ public class EditContactView extends Composite implements EditContactPresenter.D
   
   public EditContactView() {
     DecoratorPanel contentDetailsDecorator = new DecoratorPanel();
-    contentDetailsDecorator.setWidth("18em");
+    contentDetailsDecorator.setWidth("300px");
     initWidget(contentDetailsDecorator);
 
     VerticalPanel contentDetailsPanel = new VerticalPanel();

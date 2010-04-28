@@ -8,29 +8,29 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 public class EditContactPlace extends
-		ProvidedPresenterPlace<EditContactPresenter> {
+    ProvidedPresenterPlace<EditContactPresenter> {
 
-	@Inject
-	public EditContactPlace(Provider<EditContactPresenter> presenter) {
-		super(presenter);
-	}
+  @Inject
+  public EditContactPlace(Provider<EditContactPresenter> presenter) {
+    super(presenter);
+  }
 
-	@Override
-	public String getName() {
-		return "EditContact";
-	}
-	
-	@Override
-	public void preparePresenter(PlaceRequest request, EditContactPresenter presenter) {
-		presenter.setId(request.getParameter("id", null));
-	}
-	
-	@Override
-	public PlaceRequest prepareRequest(PlaceRequest request, EditContactPresenter presenter) {
-		if (presenter.getId() != null) {
-			request = request.with("id", presenter.getId());
-		}
-		return request;
-	}
+  @Override
+  public String getName() {
+    return "EditContact";
+  }
+  
+  @Override
+  public void preparePresenter(PlaceRequest request, EditContactPresenter presenter) {
+    presenter.setId(request.getParameter("id", null));
+  }
+  
+  @Override
+  public PlaceRequest prepareRequest(PlaceRequest request, EditContactPresenter presenter) {
+    if (presenter.getId() != null) {
+      request = request.with("id", presenter.getId());
+    }
+    return request;
+  }
 
 }

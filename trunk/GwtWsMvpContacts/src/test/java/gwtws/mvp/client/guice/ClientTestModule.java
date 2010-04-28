@@ -18,9 +18,6 @@
  ****************************************************************/
 package gwtws.mvp.client.guice;
 
-import java.util.Arrays;
-import java.util.List;
-
 import gwtws.mvp.client.presenter.ContactsPresenter;
 import gwtws.mvp.client.presenter.EditContactPresenter;
 import gwtws.mvp.client.presenter.MainPresenter;
@@ -36,7 +33,6 @@ import net.customware.gwt.presenter.client.place.PlaceManager;
 
 import org.easymock.EasyMock;
 
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.GwtEvent;
@@ -56,106 +52,106 @@ import com.google.inject.Singleton;
  */
 public class ClientTestModule extends AbstractModule {
 
-	protected DispatchAsync dispatchAsyncInstance = null;
-	protected Class<? extends DispatchAsync> dispatchAsyncClass = MockedDispatchAsync.class;
-	
-	@Override
-	protected void configure() {
+  protected DispatchAsync dispatchAsyncInstance = null;
+  protected Class<? extends DispatchAsync> dispatchAsyncClass = MockedDispatchAsync.class;
+  
+  @Override
+  protected void configure() {
 
-		if (dispatchAsyncInstance == null) {
-			bind(DispatchAsync.class).to(dispatchAsyncClass).in(Singleton.class);
-		} else {
-			bind(DispatchAsync.class).toInstance(dispatchAsyncInstance);
-		}
+    if (dispatchAsyncInstance == null) {
+      bind(DispatchAsync.class).to(dispatchAsyncClass).in(Singleton.class);
+    } else {
+      bind(DispatchAsync.class).toInstance(dispatchAsyncInstance);
+    }
 
-		bind(EventBus.class).to(DefaultEventBus.class).asEagerSingleton();
+    bind(EventBus.class).to(DefaultEventBus.class).asEagerSingleton();
 
-		bind(MockedDispatchAsync.class);
-		
-		easyBind(PlaceManager.class);
+    bind(MockedDispatchAsync.class);
+    
+    easyBind(PlaceManager.class);
 
-		bind(MainPresenter.class).asEagerSingleton();
-		bind(MainPresenter.Display.class).to(MockedMainView.class).asEagerSingleton();
+    bind(MainPresenter.class).asEagerSingleton();
+    bind(MainPresenter.Display.class).to(MockedMainView.class).asEagerSingleton();
 
-		bind(ContactsPresenter.class).asEagerSingleton();
-		easyBind(ContactsPresenter.Display.class);
-		
-		bind(EditContactPresenter.class).asEagerSingleton();
-		bind(EditContactPresenter.Display.class).to(MockedEditContactsView.class).asEagerSingleton();
-		
-		EasyMock.createNiceMock(MainPresenter.Display.class);
-	}
+    bind(ContactsPresenter.class).asEagerSingleton();
+    easyBind(ContactsPresenter.Display.class);
+    
+    bind(EditContactPresenter.class).asEagerSingleton();
+    bind(EditContactPresenter.Display.class).to(MockedEditContactsView.class).asEagerSingleton();
+    
+    EasyMock.createNiceMock(MainPresenter.Display.class);
+  }
 
-	protected <D> void easyBind(final Class<D> clazz) {
-		final D mockDisplay = EasyMock.createNiceMock(clazz);
-		bind(clazz).toInstance(mockDisplay);
-	}
+  protected <D> void easyBind(final Class<D> clazz) {
+    final D mockDisplay = EasyMock.createNiceMock(clazz);
+    bind(clazz).toInstance(mockDisplay);
+  }
 
-	/**
-	 * Dispatch Asynchronous implementation for testing 
-	 */
-	static public class MockedDispatchAsync implements DispatchAsync {
-		private DefaultDispatch dispatch;
+  /**
+   * Dispatch Asynchronous implementation for testing 
+   */
+  static public class MockedDispatchAsync implements DispatchAsync {
+    private DefaultDispatch dispatch;
 
-		@Inject
-		public MockedDispatchAsync(Dispatch dispatch) {
-			this.dispatch = (DefaultDispatch) dispatch;
-		}
+    @Inject
+    public MockedDispatchAsync(Dispatch dispatch) {
+      this.dispatch = (DefaultDispatch) dispatch;
+    }
 
-		public <A extends Action<R>, R extends Result> void execute(A action,
-				AsyncCallback<R> callback) {
-			try {
-				R result = dispatch.execute(action);
-				callback.onSuccess(result);
-			} catch (ActionException e) {
-				callback.onFailure(e);
-			}
-		}
-	}
+    public <A extends Action<R>, R extends Result> void execute(A action,
+        AsyncCallback<R> callback) {
+      try {
+        R result = dispatch.execute(action);
+        callback.onSuccess(result);
+      } catch (ActionException e) {
+        callback.onFailure(e);
+      }
+    }
+  }
 
-	public static class MockedMainView implements MainPresenter.Display {
-		Widget w;
-		public void addWidget(Widget widget) {
-		}
-		public void removeWidget(Widget widget) {
-		}
-		public void showWidget(Widget widget) {
-			w = widget;
-		}
-		public Widget asWidget() {
-			return w;
-		}
-	}
-	
-	public static class MockedEditContactsView implements EditContactPresenter.Display {
-		HasClickHandlers aClick = new HasClickHandlers() {
-			public void fireEvent(GwtEvent<?> event) {
-			}
-			public HandlerRegistration addClickHandler(ClickHandler handler) {
-				return null;
-			}
-		};
-		Widget aWidget = new Widget();
-		HasText aText = EasyMock.createNiceMock(HasText.class);
+  public static class MockedMainView implements MainPresenter.Display {
+    Widget w;
+    public void addWidget(Widget widget) {
+    }
+    public void removeWidget(Widget widget) {
+    }
+    public void showWidget(Widget widget) {
+      w = widget;
+    }
+    public Widget asWidget() {
+      return w;
+    }
+  }
+  
+  public static class MockedEditContactsView implements EditContactPresenter.Display {
+    HasClickHandlers aClick = new HasClickHandlers() {
+      public void fireEvent(GwtEvent<?> event) {
+      }
+      public HandlerRegistration addClickHandler(ClickHandler handler) {
+        return null;
+      }
+    };
+    Widget aWidget = new Widget();
+    HasText aText = EasyMock.createNiceMock(HasText.class);
 
-		public HasClickHandlers getCancelButton() {
-			return aClick;
-		}
-		public HasClickHandlers getSaveButton() {
-			return aClick;
-		}
-		public Widget asWidget() {
-			return aWidget;
-		}
-		public HasText getEmailAddress() {
-			return aText;
-		}
-		public HasText getFirstName() {
-			return aText;
-		}
-		public HasText getLastName() {
-			return aText;
-		}
-	}
+    public HasClickHandlers getCancelButton() {
+      return aClick;
+    }
+    public HasClickHandlers getSaveButton() {
+      return aClick;
+    }
+    public Widget asWidget() {
+      return aWidget;
+    }
+    public HasText getEmailAddress() {
+      return aText;
+    }
+    public HasText getFirstName() {
+      return aText;
+    }
+    public HasText getLastName() {
+      return aText;
+    }
+  }
 
 }

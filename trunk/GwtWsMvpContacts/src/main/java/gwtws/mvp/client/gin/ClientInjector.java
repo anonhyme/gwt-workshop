@@ -18,6 +18,8 @@
  ****************************************************************/
 package gwtws.mvp.client.gin;
 
+import gwtws.mvp.client.presenter.ContactsPresenter;
+import gwtws.mvp.client.presenter.EditContactPresenter;
 import gwtws.mvp.client.presenter.MainPresenter;
 import net.customware.gwt.dispatch.client.gin.ClientDispatchModule;
 
@@ -26,5 +28,7 @@ import com.google.gwt.inject.client.Ginjector;
 
 @GinModules( { ClientDispatchModule.class, ClientModule.class })
 public interface ClientInjector extends Ginjector {
-	public MainPresenter getMainPresenter();
+  public MainPresenter getMainPresenter();
+  public ContactsPresenter getContactsPresenter();
+  public EditContactPresenter getEditContactPresenter();
 }

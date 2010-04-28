@@ -1,7 +1,6 @@
 package gwtws.mvp.client;
 
 import gwtws.mvp.client.gin.ClientInjector;
-import gwtws.mvp.client.presenter.MainPresenter;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -11,17 +10,18 @@ import com.google.gwt.core.client.GWT;
  */
 public class Contacts implements EntryPoint {
 
-	MainPresenter appPresenter;
-	
-	public Contacts() {
-		this((ClientInjector)GWT.create(ClientInjector.class));
-	}
-	
-	public Contacts(ClientInjector injector) {
-		appPresenter = injector.getMainPresenter();
-	}
-	
-	public void onModuleLoad() {
-		appPresenter.bind();
-	}
+  protected final ClientInjector injector;
+  
+  public Contacts() {
+    injector = GWT.create(ClientInjector.class);
+  }
+  
+  // For testing
+  public Contacts(ClientInjector clientInjector) {
+    injector = clientInjector;
+  }
+  
+  public void onModuleLoad() {
+    injector.getMainPresenter().bind();
+  }
 }
