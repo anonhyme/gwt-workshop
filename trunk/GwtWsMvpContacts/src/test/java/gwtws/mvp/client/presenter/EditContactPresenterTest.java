@@ -45,8 +45,8 @@ public class EditContactPresenterTest extends ClientTestCase {
 		editPresenter.doSave();
 		assertEquals("aName aName", contactsPresenter.contactDetails.get(0).getDisplayName());
 		
-		eventBus.fireEvent(new AddContactEvent());
 		assertEquals(22, contactsPresenter.contactDetails.size());
+		eventBus.fireEvent(new AddContactEvent());
 		editPresenter.doSave();
 		assertEquals(23, contactsPresenter.contactDetails.size());
 		

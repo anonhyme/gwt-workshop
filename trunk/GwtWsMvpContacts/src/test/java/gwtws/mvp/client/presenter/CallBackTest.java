@@ -11,11 +11,11 @@ import net.customware.gwt.dispatch.shared.Result;
 public class CallBackTest extends ClientTestCase {
 	
 	@SuppressWarnings("serial")
-	class TestResult implements Result {
+	class UnregisteredTestResult implements Result {
 	}
 	
 	@SuppressWarnings("serial")
-	public class TestAction implements Action<TestResult> {
+	public class UnregisteredAction implements Action<UnregisteredTestResult> {
 	}
 
 	boolean success = false;
@@ -39,10 +39,10 @@ public class CallBackTest extends ClientTestCase {
 		});
 		assertTrue(success);
 		
-		// Do a wrong call (a unregistered action)
+		// Do a wrong call (an unregistered action)
 		success = true;
-		dispatcher.execute(new TestAction(), new CallBack<TestResult>(dispatcher, eventBus) {
-			public void callback(TestResult result) {
+		dispatcher.execute(new UnregisteredAction(), new CallBack<UnregisteredTestResult>(dispatcher, eventBus) {
+			public void callback(UnregisteredTestResult result) {
 				success = true;
 			}
 		});
