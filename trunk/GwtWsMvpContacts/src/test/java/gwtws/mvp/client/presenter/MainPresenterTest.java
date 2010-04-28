@@ -34,6 +34,7 @@ public class MainPresenterTest extends ClientTestCase {
 		EasyMock.replay(contactsView);
 		
 		// When the app starts, the contacts view is shown
+		// Call onModuleLoad instead of mainPresenter, so as increase the coverage
 		assertNull(mainView.asWidget());
 		Contacts entryPoint = new Contacts(new ClientInjector() {
 			public MainPresenter getMainPresenter() {
