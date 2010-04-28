@@ -7,20 +7,20 @@ import gwtws.mvp.shared.pojo.Contact;
 @SuppressWarnings("serial")
 public class AddContact implements Action<AddContactResult> {
 
-	private Contact contact;
+  private Contact contact;
 
-	@SuppressWarnings("unused")
-	private AddContact() {
-		super();
-	}
+  @SuppressWarnings("unused")
+  private AddContact() {
+    super();
+  }
 
-	public AddContact(Contact contact) {
-		this.contact = contact;
-	}
+  public AddContact(Contact contact) {
+    this.contact = contact;
+  }
 
-	public Contact getContact() {
-		// TODO Auto-generated method stub
-		return contact;
-	}
+  public Contact getContact() {
+    // TODO Auto-generated method stub
+    return contact;
+  }
 
 }

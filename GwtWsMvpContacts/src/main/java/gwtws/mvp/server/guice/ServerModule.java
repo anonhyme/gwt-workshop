@@ -15,22 +15,22 @@ import com.google.inject.servlet.ServletModule;
 
 public class ServerModule extends ActionHandlerModule implements Module {
 
-	
-	public static class WebModule extends ServletModule {
-		@Override
-		public void configureServlets() {
-			serve("/contacts/dispatch").with(DispatchServiceServlet.class);
-		}
-	}
+  
+  public static class WebModule extends ServletModule {
+    @Override
+    public void configureServlets() {
+      serve("/contacts/dispatch").with(DispatchServiceServlet.class);
+    }
+  }
 
-	@Override
-	protected void configureHandlers() {
-		bindHandler(GetContactsDetailDetailHandler.class);
-		bindHandler(GetContactHandler.class);
-		bind(ContactDao.class).to(ContactsDaoInMemory.class);
-		bindHandler(SaveContactHandler.class);
-		bindHandler(DeleteContactsHandler.class);
-		bindHandler(AddContactHandler.class);
-	}
+  @Override
+  protected void configureHandlers() {
+    bindHandler(GetContactsDetailDetailHandler.class);
+    bindHandler(GetContactHandler.class);
+    bind(ContactDao.class).to(ContactsDaoInMemory.class);
+    bindHandler(SaveContactHandler.class);
+    bindHandler(DeleteContactsHandler.class);
+    bindHandler(AddContactHandler.class);
+  }
 
 }

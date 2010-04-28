@@ -31,10 +31,10 @@ import com.google.inject.Inject;
  */
 public class AppPlaceManager extends DefaultPlaceManager {
 
-	@Inject
-	public AppPlaceManager(EventBus eventBus, TokenFormatter formater,
-			ContactsPresenterPlace pres1, EditContactPlace pres2) {
-		super(eventBus, formater, pres1, pres2);
-	}
+  @Inject
+  public AppPlaceManager(EventBus eventBus, TokenFormatter formater,
+      ContactsPresenterPlace pres1, EditContactPlace pres2) {
+    super(eventBus, formater, pres1, pres2);
+  }
 
 }

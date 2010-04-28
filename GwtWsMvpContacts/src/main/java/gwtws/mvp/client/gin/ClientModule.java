@@ -20,21 +20,21 @@ import net.customware.gwt.presenter.client.place.TokenFormatter;
 import com.google.inject.Singleton;
 
 public class ClientModule extends AbstractPresenterModule {
-	@Override
-	protected void configure() {
-		bind(EventBus.class).to(DefaultEventBus.class).in(Singleton.class);
-		bind(TokenFormatter.class).to(ParameterTokenFormatter.class);
-		bind(PlaceManager.class).to(AppPlaceManager.class);
-		bind(DefaultDispatchAsync.class);
+  @Override
+  protected void configure() {
+    bind(EventBus.class).to(DefaultEventBus.class).in(Singleton.class);
+    bind(TokenFormatter.class).to(ParameterTokenFormatter.class);
+    bind(PlaceManager.class).to(AppPlaceManager.class);
+    bind(DefaultDispatchAsync.class);
 
-		bindPresenter(MainPresenter.class,
-				MainPresenter.Display.class, MainView.class);
-		bindPresenter(ContactsPresenter.class, ContactsPresenter.Display.class,
-				ContactsView.class);
-		bindPresenter(EditContactPresenter.class,
-				EditContactPresenter.Display.class, EditContactView.class);
+    bindPresenter(MainPresenter.class,
+        MainPresenter.Display.class, MainView.class);
+    bindPresenter(ContactsPresenter.class, ContactsPresenter.Display.class,
+        ContactsView.class);
+    bindPresenter(EditContactPresenter.class,
+        EditContactPresenter.Display.class, EditContactView.class);
 
-		bind(ContactsPresenterPlace.class).in(Singleton.class);
-		bind(EditContactPlace.class).in(Singleton.class);
-	}
+    bind(ContactsPresenterPlace.class).in(Singleton.class);
+    bind(EditContactPlace.class).in(Singleton.class);
+  }
 }

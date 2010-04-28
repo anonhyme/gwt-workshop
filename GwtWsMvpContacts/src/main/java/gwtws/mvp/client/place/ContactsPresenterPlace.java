@@ -7,16 +7,16 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 public class ContactsPresenterPlace extends
-		ProvidedPresenterPlace<ContactsPresenter> {
+    ProvidedPresenterPlace<ContactsPresenter> {
 
-	@Inject
-	public ContactsPresenterPlace(Provider<ContactsPresenter> presenter) {
-		super(presenter);
-	}
+  @Inject
+  public ContactsPresenterPlace(Provider<ContactsPresenter> presenter) {
+    super(presenter);
+  }
 
-	@Override
-	public String getName() {
-		return "Contacts";
-	}
+  @Override
+  public String getName() {
+    return "Contacts";
+  }
 
 }

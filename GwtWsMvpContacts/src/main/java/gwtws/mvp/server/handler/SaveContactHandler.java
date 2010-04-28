@@ -11,27 +11,27 @@ import net.customware.gwt.dispatch.shared.ActionException;
 import com.google.inject.Inject;
 
 public class SaveContactHandler implements
-		ActionHandler<SaveContact, SaveContactResult> {
-	private ContactDao contactDao;
+    ActionHandler<SaveContact, SaveContactResult> {
+  private ContactDao contactDao;
 
-	@Inject
-	public SaveContactHandler(ContactDao contactDao) {
-		this.contactDao = contactDao;
-	}
+  @Inject
+  public SaveContactHandler(ContactDao contactDao) {
+    this.contactDao = contactDao;
+  }
 
-	public SaveContactResult execute(SaveContact action, ExecutionContext context)
-			throws ActionException {
-		Contact contact = contactDao.updateContact(action.getContact());
-		SaveContactResult saveContactResult = new SaveContactResult(contact);
-		return saveContactResult;
-	}
+  public SaveContactResult execute(SaveContact action, ExecutionContext context)
+      throws ActionException {
+    Contact contact = contactDao.updateContact(action.getContact());
+    SaveContactResult saveContactResult = new SaveContactResult(contact);
+    return saveContactResult;
+  }
 
-	public Class<SaveContact> getActionType() {
-		return SaveContact.class;
-	}
+  public Class<SaveContact> getActionType() {
+    return SaveContact.class;
+  }
 
-	public void rollback(SaveContact action, SaveContactResult result,
-			ExecutionContext context) throws ActionException {
-	}
+  public void rollback(SaveContact action, SaveContactResult result,
+      ExecutionContext context) throws ActionException {
+  }
 
 }

@@ -23,129 +23,135 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.inject.Inject;
 
 public class ContactsPresenter extends
-		WidgetPresenter<ContactsPresenter.Display> {
+    WidgetPresenter<ContactsPresenter.Display> {
 
-	protected List<ContactDetails> contactDetails;
+  private List<ContactDetails> contactDetails;
+  
 
-	public interface Display extends WidgetDisplay {
-		HasClickHandlers getAddButton();
+  public interface Display extends WidgetDisplay {
+    HasClickHandlers getAddButton();
 
-		HasClickHandlers getDeleteButton();
+    HasClickHandlers getDeleteButton();
 
-		HasClickHandlers getList();
+    HasClickHandlers getList();
 
-		void setData(List<String> data);
+    void setData(List<String> data);
 
-		int getClickedRow(ClickEvent event);
+    int getClickedRow(ClickEvent event);
 
-		List<Integer> getSelectedRows();
-	}
+    List<Integer> getSelectedRows();
+  }
 
-	private final DispatchAsync dispatcher;
-	private final EventBus eventBus;
-	private final Display display;
+  private final DispatchAsync dispatcher;
+  private final EventBus eventBus;
+  private final Display display;
 
-	@Inject
-	public ContactsPresenter(Display view, EventBus eventBus,
-			DispatchAsync dispatcher) {
-		super(view, eventBus);
-		this.eventBus = eventBus;
-		this.display = view;
-		this.dispatcher = dispatcher;
-	}
+  @Inject
+  public ContactsPresenter(Display view, EventBus eventBus,
+      DispatchAsync dispatcher) {
+    super(view, eventBus);
+    this.eventBus = eventBus;
+    this.display = view;
+    this.dispatcher = dispatcher;
+  }
 
-	public void onBind() {
-		display.getAddButton().addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				eventBus.fireEvent(new AddContactEvent());
-			}
-		});
+  public void onBind() {
+    display.getAddButton().addClickHandler(new ClickHandler() {
+      public void onClick(ClickEvent event) {
+        eventBus.fireEvent(new AddContactEvent());
+      }
+    });
 
-		display.getDeleteButton().addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				deleteSelectedContacts();
-			}
-		});
+    display.getDeleteButton().addClickHandler(new ClickHandler() {
+      public void onClick(ClickEvent event) {
+        deleteSelectedContacts();
+      }
+    });
 
-		display.getList().addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				int selectedRow = display.getClickedRow(event);
+    display.getList().addClickHandler(new ClickHandler() {
+      public void onClick(ClickEvent event) {
+        int selectedRow = display.getClickedRow(event);
 
-				if (selectedRow >= 0) {
-					String id = contactDetails.get(selectedRow).getId();
-					eventBus.fireEvent(new EditContactEvent(id));
-				}
-			}
-		});
+        if (selectedRow >= 0) {
+          String id = contactDetails.get(selectedRow).getId();
+          eventBus.fireEvent(new EditContactEvent(id));
+        }
+      }
+    });
 
-		fetchContactDetails();
-	}
+    fetchContactDetails();
+  }
 
-	protected void sortContactDetails() {
-		// Yes, we could use a more optimized method of sorting, but the
-		// point is to create a test case that helps illustrate the higher
-		// level concepts used when creating MVP-based applications.
-		//
-		for (int i = 0; i < contactDetails.size(); ++i) {
-			for (int j = 0; j < contactDetails.size() - 1; ++j) {
-				if (contactDetails.get(j).getDisplayName().compareToIgnoreCase(
-						contactDetails.get(j + 1).getDisplayName()) >= 0) {
-					ContactDetails tmp = contactDetails.get(j);
-					contactDetails.set(j, contactDetails.get(j + 1));
-					contactDetails.set(j + 1, tmp);
-				}
-			}
-		}
-	}
+  protected void sortContactDetails() {
+    // Yes, we could use a more optimized method of sorting, but the
+    // point is to create a test case that helps illustrate the higher
+    // level concepts used when creating MVP-based applications.
+    //
+    for (int i = 0; i < contactDetails.size(); ++i) {
+      for (int j = 0; j < contactDetails.size() - 1; ++j) {
+        if (contactDetails.get(j).getDisplayName().compareToIgnoreCase(
+            contactDetails.get(j + 1).getDisplayName()) >= 0) {
+          ContactDetails tmp = contactDetails.get(j);
+          contactDetails.set(j, contactDetails.get(j + 1));
+          contactDetails.set(j + 1, tmp);
+        }
+      }
+    }
+  }
 
-	public void setContactDetails(List<ContactDetails> contactDetails) {
-		this.contactDetails = contactDetails;
-	}
+  public void setContactDetails(List<ContactDetails> contactDetails) {
+    this.contactDetails = contactDetails;
+  }
 
-	public ContactDetails getContactDetail(int index) {
-		return contactDetails.get(index);
-	}
+  public ContactDetails getContactDetail(int index) {
+    return contactDetails.get(index);
+  }
+  
+  public List<ContactDetails> getContactDetails(){
+    return contactDetails;
+  }
 
-	protected void fetchContactDetails() {
-		dispatcher.execute(new GetContactDetails(),
-				new CallBack<GetContactDetailsResult>(dispatcher, eventBus) {
-					public void callback(GetContactDetailsResult result) {
-						contactDetails = result.getContactList();
-						sortContactDetails();
-						List<String> data = new ArrayList<String>();
-						for (ContactDetails c : contactDetails) {
-							data.add(c.getDisplayName());
-						}
-						display.setData(data);
-					}
-				});
-	}
+  protected void fetchContactDetails() {
+    dispatcher.execute(new GetContactDetails(),
+        new CallBack<GetContactDetailsResult>(dispatcher, eventBus) {
+          public void callback(GetContactDetailsResult result) {
+            contactDetails = result.getContactList();
+            sortContactDetails();
+            List<String> data = new ArrayList<String>();
+            for (ContactDetails c : contactDetails) {
+              data.add(c.getDisplayName());
+            }
+            display.setData(data);
+            System.out.println("SETTTT DATATATA");
+          }
+        });
+  }
 
-	protected void deleteSelectedContacts() {
-		List<Integer> selectedRows = display.getSelectedRows();
-		ArrayList<String> ids = new ArrayList<String>();
-		for (int i = 0; i < selectedRows.size(); ++i) {
-			ids.add(contactDetails.get(selectedRows.get(i)).getId());
-		}
-		dispatcher.execute(new DeleteContacts(ids),
-				new CallBack<DeleteContactsResult>(dispatcher, eventBus) {
-					@Override
-					public void callback(DeleteContactsResult result) {
-						eventBus.fireEvent(new ContactDeletedEvent());
-					}
-				});
-	}
+  protected void deleteSelectedContacts() {
+    List<Integer> selectedRows = display.getSelectedRows();
+    ArrayList<String> ids = new ArrayList<String>();
+    for (int i = 0; i < selectedRows.size(); ++i) {
+      ids.add(contactDetails.get(selectedRows.get(i)).getId());
+    }
+    dispatcher.execute(new DeleteContacts(ids),
+        new CallBack<DeleteContactsResult>(dispatcher, eventBus) {
+          @Override
+          public void callback(DeleteContactsResult result) {
+            eventBus.fireEvent(new ContactDeletedEvent());
+          }
+        });
+  }
 
-	public void updateAndRevealDisplay() {
-		fetchContactDetails();
-		super.revealDisplay();
-	}
+  public void updateAndRevealDisplay() {
+    fetchContactDetails();
+    super.revealDisplay();
+  }
 
-	@Override
-	protected void onRevealDisplay() {
-	}
+  @Override
+  protected void onRevealDisplay() {
+  }
 
-	@Override
-	protected void onUnbind() {
-	}
+  @Override
+  protected void onUnbind() {
+  }
 }

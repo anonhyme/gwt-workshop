@@ -13,15 +13,15 @@ public class FlashEvent extends GwtEvent<FlashEventHandler> {
   private String error;
   
   public FlashEvent(Throwable c) {
-  	error = c.getMessage();
+    error = c.getMessage();
   }
   
   public FlashEvent(String s) {
-  	error = s;
+    error = s;
   }
   
   public String getError() {
-  	return error;
+    return error;
   }
 
   @Override

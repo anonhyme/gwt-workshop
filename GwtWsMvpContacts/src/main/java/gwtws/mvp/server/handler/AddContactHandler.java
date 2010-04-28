@@ -11,27 +11,27 @@ import net.customware.gwt.dispatch.shared.ActionException;
 import com.google.inject.Inject;
 
 public class AddContactHandler implements
-		ActionHandler<AddContact, AddContactResult> {
+    ActionHandler<AddContact, AddContactResult> {
 
-	private ContactDao contactDao;
+  private ContactDao contactDao;
 
-	@Inject
-	public AddContactHandler(ContactDao contactDao) {
-		this.contactDao = contactDao;
-	}
+  @Inject
+  public AddContactHandler(ContactDao contactDao) {
+    this.contactDao = contactDao;
+  }
 
-	public AddContactResult execute(AddContact action, ExecutionContext context)
-			throws ActionException {
-		Contact contact = contactDao.addContact(action.getContact());
-		return new AddContactResult(contact);
-	}
+  public AddContactResult execute(AddContact action, ExecutionContext context)
+      throws ActionException {
+    Contact contact = contactDao.addContact(action.getContact());
+    return new AddContactResult(contact);
+  }
 
-	public Class<AddContact> getActionType() {
-		return AddContact.class;
-	}
+  public Class<AddContact> getActionType() {
+    return AddContact.class;
+  }
 
-	public void rollback(AddContact action, AddContactResult result,
-			ExecutionContext context) throws ActionException {
-	}
+  public void rollback(AddContact action, AddContactResult result,
+      ExecutionContext context) throws ActionException {
+  }
 
 }

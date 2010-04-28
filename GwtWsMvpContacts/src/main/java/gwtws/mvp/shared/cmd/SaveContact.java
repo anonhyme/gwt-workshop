@@ -5,18 +5,18 @@ import net.customware.gwt.dispatch.shared.Action;
 
 @SuppressWarnings("serial")
 public class SaveContact implements Action<SaveContactResult> {
-	private Contact contact;
+  private Contact contact;
 
-	@SuppressWarnings("unused")
-	private SaveContact() {
-	}
+  @SuppressWarnings("unused")
+  private SaveContact() {
+  }
 
-	public SaveContact(Contact contact) {
-		this.contact = contact;
-	}
+  public SaveContact(Contact contact) {
+    this.contact = contact;
+  }
 
-	public Contact getContact() {
-		return contact;
-	}
+  public Contact getContact() {
+    return contact;
+  }
 
 }
