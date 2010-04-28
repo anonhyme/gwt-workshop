@@ -16,9 +16,9 @@ It is prepared to used with maven and eclipse and uses the latest versions of:
  - gwt-dispatch
  - gwt-guice
 
-One of the interesting points is how to test all the code in the JVM, which is the main
-goal of a Gwt-Mvp application. The application has tests which covers the code in a 77%.
-
+One of the interesting points is how to test almost the code with the JVM, which is the main
+goal of a Gwt-Mvp application. 
+The application test coverage is about 80%.
 
 
 Manuel Carrasco Moñino (28-April-2010)
