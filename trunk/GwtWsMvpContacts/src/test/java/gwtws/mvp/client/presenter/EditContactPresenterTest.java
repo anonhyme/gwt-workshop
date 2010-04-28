@@ -14,37 +14,44 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class EditContactPresenterTest extends ClientTestCase {
 
-	MainPresenter controller = injector.getInstance(MainPresenter.class);
-	MainPresenter.Display appDspl = controller.getDisplay();
+	MainPresenter mainPresenter = injector.getInstance(MainPresenter.class);
+	MainPresenter.Display mainView = mainPresenter.getDisplay();
 	ContactsPresenter contactsPresenter = injector.getInstance(ContactsPresenter.class);
-	ContactsPresenter.Display contactsDspl = injector.getInstance(ContactsPresenter.Display.class);
+	ContactsPresenter.Display contactsView = injector.getInstance(ContactsPresenter.Display.class);
 	EditContactPresenter editPresenter = injector.getInstance(EditContactPresenter.class);
-	EditContactPresenter.Display editDspl = injector.getInstance(EditContactPresenter.Display.class);
+	EditContactPresenter.Display editView = injector.getInstance(EditContactPresenter.Display.class);
 	
 	public void testContactsPresenter() throws Exception {
+		
+  	// Prepare the contacts view
 		HasClickHandlers addBtn = EasyMock.createNiceMock(HasClickHandlers.class);
 		HasClickHandlers delBtn = EasyMock.createNiceMock(HasClickHandlers.class);
 		HasClickHandlers list = EasyMock.createNiceMock(HasClickHandlers.class);
-		EasyMock.expect(contactsDspl.getAddButton()).andReturn(addBtn);
-		EasyMock.expect(contactsDspl.getDeleteButton()).andReturn(delBtn);
-		EasyMock.expect(contactsDspl.getList()).andReturn(list);
-		EasyMock.expect(contactsDspl.asWidget()).andReturn(new Widget()).anyTimes() ;
+		EasyMock.expect(contactsView.getAddButton()).andReturn(addBtn);
+		EasyMock.expect(contactsView.getDeleteButton()).andReturn(delBtn);
+		EasyMock.expect(contactsView.getList()).andReturn(list);
+		EasyMock.expect(contactsView.asWidget()).andReturn(new Widget()).anyTimes() ;
 		List<Integer> toDelete =  Arrays.asList(0, 10);
-		EasyMock.expect(contactsDspl.getSelectedRows()).andReturn(toDelete);
-		EasyMock.replay(contactsDspl);
+		EasyMock.expect(contactsView.getSelectedRows()).andReturn(toDelete);
+		EasyMock.replay(contactsView);
 		
-		controller.onBind();
+  	// When the application starts, it gets all the contact from the server
+		mainPresenter.onBind();
 		assertEquals(22, contactsPresenter.contactDetails.size());
+		// The list must be ordered
 		assertEquals("Abigail Louis", contactsPresenter.contactDetails.get(0).getDisplayName());
 		
-		HasText mockedText = editDspl.getFirstName();
+		// The mocked edit view uses an unique easy-mock object for all HasText methods 
+		HasText mockedText = editView.getFirstName();
 		EasyMock.expect(mockedText.getText()).andReturn("aName").anyTimes();
 		EasyMock.replay(mockedText);
 		
+		// Modify the first contact. The trick is that the mocked HasText always return the text 'aName'
 		editPresenter.setId(contactsPresenter.contactDetails.get(0).getId());
 		editPresenter.doSave();
 		assertEquals("aName aName", contactsPresenter.contactDetails.get(0).getDisplayName());
 		
+		// Add a new contact
 		assertEquals(22, contactsPresenter.contactDetails.size());
 		eventBus.fireEvent(new AddContactEvent());
 		editPresenter.doSave();

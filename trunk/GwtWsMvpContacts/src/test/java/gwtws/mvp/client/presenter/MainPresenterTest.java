@@ -14,44 +14,43 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class MainPresenterTest extends ClientTestCase {
 
-	MainPresenter presenter = injector
-			.getInstance(MainPresenter.class);
-	MainPresenter.Display mainDisplay = presenter.getDisplay();
-	ContactsPresenter contactsPresenter = injector
-			.getInstance(ContactsPresenter.class);
-	ContactsPresenter.Display contactsDisplay = injector
-			.getInstance(ContactsPresenter.Display.class);
-	EditContactPresenter.Display editContactDisplay = injector
-			.getInstance(EditContactPresenter.Display.class);
+	MainPresenter mainPresenter = injector.getInstance(MainPresenter.class);
+	MainPresenter.Display mainView = mainPresenter.getDisplay();
+	ContactsPresenter contactsPresenter = injector.getInstance(ContactsPresenter.class);
+	ContactsPresenter.Display contactsView = injector.getInstance(ContactsPresenter.Display.class);
+	EditContactPresenter.Display editContactView = injector.getInstance(EditContactPresenter.Display.class);
 
 	public void testApplicationController() throws Exception {
 		
+	  // Prepare the contacts view
 		HasClickHandlers addBtn = EasyMock.createNiceMock(HasClickHandlers.class);
 		HasClickHandlers delBtn = EasyMock.createNiceMock(HasClickHandlers.class);
 		HasClickHandlers list = EasyMock.createNiceMock(HasClickHandlers.class);
-		EasyMock.expect(contactsDisplay.getAddButton()).andReturn(addBtn);
-		EasyMock.expect(contactsDisplay.getDeleteButton()).andReturn(delBtn);
-		EasyMock.expect(contactsDisplay.getList()).andReturn(list);
-		EasyMock.expect(contactsDisplay.asWidget()).andReturn(new Widget()).anyTimes();
-		EasyMock.replay(contactsDisplay);
+		EasyMock.expect(contactsView.getAddButton()).andReturn(addBtn);
+		EasyMock.expect(contactsView.getDeleteButton()).andReturn(delBtn);
+		EasyMock.expect(contactsView.getList()).andReturn(list);
+		EasyMock.expect(contactsView.asWidget()).andReturn(new Widget()).anyTimes();
+		EasyMock.replay(contactsView);
 
-		assertNull(mainDisplay.asWidget());
-		presenter.onBind();
-		assertEquals(contactsDisplay.asWidget(), mainDisplay.asWidget());
+		// When the app starts, the contacts view is shown
+		assertNull(mainView.asWidget());
+		mainPresenter.onBind();
+		assertEquals(contactsView.asWidget(), mainView.asWidget());
 
+		// Different events make change the view
 		eventBus.fireEvent(new AddContactEvent());
-		assertEquals(editContactDisplay.asWidget(), mainDisplay.asWidget());
+		assertEquals(editContactView.asWidget(), mainView.asWidget());
 
 		eventBus.fireEvent(new EditContactCancelledEvent());
-		assertEquals(contactsDisplay.asWidget(), mainDisplay.asWidget());
+		assertEquals(contactsView.asWidget(), mainView.asWidget());
 
 		eventBus.fireEvent(new EditContactEvent("1"));
-		assertEquals(editContactDisplay.asWidget(), mainDisplay.asWidget());
+		assertEquals(editContactView.asWidget(), mainView.asWidget());
 
 		eventBus.fireEvent(new ContactUpdatedEvent(null));
-		assertEquals(contactsDisplay.asWidget(), mainDisplay.asWidget());
+		assertEquals(contactsView.asWidget(), mainView.asWidget());
 
 		eventBus.fireEvent(new ContactDeletedEvent());
-		assertEquals(contactsDisplay.asWidget(), mainDisplay.asWidget());
+		assertEquals(contactsView.asWidget(), mainView.asWidget());
 	}
 }
