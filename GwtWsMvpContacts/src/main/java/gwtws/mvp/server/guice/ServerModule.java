@@ -15,6 +15,7 @@ import com.google.inject.servlet.ServletModule;
 
 public class ServerModule extends ActionHandlerModule implements Module {
 
+	
 	public static class WebModule extends ServletModule {
 		@Override
 		public void configureServlets() {
