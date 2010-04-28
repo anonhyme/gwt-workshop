@@ -10,10 +10,18 @@ import com.google.gwt.core.client.GWT;
  * Entry point 
  */
 public class Contacts implements EntryPoint {
-	private final ClientInjector injector = GWT.create(ClientInjector.class);
 
+	MainPresenter appPresenter;
+	
+	public Contacts() {
+		this((ClientInjector)GWT.create(ClientInjector.class));
+	}
+	
+	public Contacts(ClientInjector injector) {
+		appPresenter = injector.getMainPresenter();
+	}
+	
 	public void onModuleLoad() {
-		MainPresenter appPresenter = injector.getMainPresenter();
 		appPresenter.bind();
 	}
 }

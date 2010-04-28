@@ -1,11 +1,13 @@
 package gwtws.mvp.client.presenter;
 
 import gwtws.mvp.client.ClientTestCase;
+import gwtws.mvp.client.Contacts;
 import gwtws.mvp.client.event.AddContactEvent;
 import gwtws.mvp.client.event.ContactDeletedEvent;
 import gwtws.mvp.client.event.ContactUpdatedEvent;
 import gwtws.mvp.client.event.EditContactCancelledEvent;
 import gwtws.mvp.client.event.EditContactEvent;
+import gwtws.mvp.client.gin.ClientInjector;
 
 import org.easymock.EasyMock;
 
@@ -14,11 +16,10 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class MainPresenterTest extends ClientTestCase {
 
-	MainPresenter mainPresenter = injector.getInstance(MainPresenter.class);
-	MainPresenter.Display mainView = mainPresenter.getDisplay();
-	ContactsPresenter contactsPresenter = injector.getInstance(ContactsPresenter.class);
-	ContactsPresenter.Display contactsView = injector.getInstance(ContactsPresenter.Display.class);
-	EditContactPresenter.Display editContactView = injector.getInstance(EditContactPresenter.Display.class);
+	private MainPresenter mainPresenter = injector.getInstance(MainPresenter.class);
+	private MainPresenter.Display mainView = mainPresenter.getDisplay();
+	private ContactsPresenter.Display contactsView = injector.getInstance(ContactsPresenter.Display.class);
+	private EditContactPresenter.Display editContactView = injector.getInstance(EditContactPresenter.Display.class);
 
 	public void testApplicationController() throws Exception {
 		
@@ -31,10 +32,15 @@ public class MainPresenterTest extends ClientTestCase {
 		EasyMock.expect(contactsView.getList()).andReturn(list);
 		EasyMock.expect(contactsView.asWidget()).andReturn(new Widget()).anyTimes();
 		EasyMock.replay(contactsView);
-
+		
 		// When the app starts, the contacts view is shown
 		assertNull(mainView.asWidget());
-		mainPresenter.onBind();
+		Contacts entryPoint = new Contacts(new ClientInjector() {
+			public MainPresenter getMainPresenter() {
+				return injector.getInstance(MainPresenter.class);
+			}
+		});
+		entryPoint.onModuleLoad();
 		assertEquals(contactsView.asWidget(), mainView.asWidget());
 
 		// Different events make change the view

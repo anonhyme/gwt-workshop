@@ -18,6 +18,9 @@
  ****************************************************************/
 package gwtws.mvp.client.guice;
 
+import java.util.Arrays;
+import java.util.List;
+
 import gwtws.mvp.client.presenter.ContactsPresenter;
 import gwtws.mvp.client.presenter.EditContactPresenter;
 import gwtws.mvp.client.presenter.MainPresenter;
@@ -33,6 +36,7 @@ import net.customware.gwt.presenter.client.place.PlaceManager;
 
 import org.easymock.EasyMock;
 
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.GwtEvent;
