@@ -122,7 +122,6 @@ public class ContactsPresenter extends
               data.add(c.getDisplayName());
             }
             display.setData(data);
-            System.out.println("SETTTT DATATATA");
           }
         });
   }
