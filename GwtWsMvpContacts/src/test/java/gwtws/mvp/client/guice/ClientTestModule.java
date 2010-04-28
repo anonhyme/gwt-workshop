@@ -22,7 +22,6 @@ import gwtws.mvp.client.presenter.ContactsPresenter;
 import gwtws.mvp.client.presenter.EditContactPresenter;
 import gwtws.mvp.client.presenter.MainPresenter;
 import net.customware.gwt.dispatch.client.DispatchAsync;
-import net.customware.gwt.dispatch.client.service.DispatchService;
 import net.customware.gwt.dispatch.server.DefaultDispatch;
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.Action;
@@ -54,7 +53,7 @@ import com.google.inject.Singleton;
 public class ClientTestModule extends AbstractModule {
 
 	protected DispatchAsync dispatchAsyncInstance = null;
-	protected Class<? extends DispatchAsync> dispatchAsyncClass = DispatchTestAsync.class;
+	protected Class<? extends DispatchAsync> dispatchAsyncClass = MockedDispatchAsync.class;
 	
 	@Override
 	protected void configure() {
@@ -67,7 +66,7 @@ public class ClientTestModule extends AbstractModule {
 
 		bind(EventBus.class).to(DefaultEventBus.class).asEagerSingleton();
 
-		bind(DispatchTestAsync.class);
+		bind(MockedDispatchAsync.class);
 		
 		easyBind(PlaceManager.class);
 
@@ -88,25 +87,14 @@ public class ClientTestModule extends AbstractModule {
 		bind(clazz).toInstance(mockDisplay);
 	}
 
-	static class DispatchTestService implements DispatchService {
-		private Dispatch dispatch;
-
-		@Inject
-		public DispatchTestService(Dispatch dispatch) {
-			this.dispatch = dispatch;
-		}
-
-		public Result execute(Action<?> action) throws Exception {
-			Result result = dispatch.execute(action);
-			return result;
-		}
-	}
-
-	static public class DispatchTestAsync implements DispatchAsync {
+	/**
+	 * Dispatch Asynchronous implementation for testing 
+	 */
+	static public class MockedDispatchAsync implements DispatchAsync {
 		private DefaultDispatch dispatch;
 
 		@Inject
-		public DispatchTestAsync(Dispatch dispatch) {
+		public MockedDispatchAsync(Dispatch dispatch) {
 			this.dispatch = (DefaultDispatch) dispatch;
 		}
 

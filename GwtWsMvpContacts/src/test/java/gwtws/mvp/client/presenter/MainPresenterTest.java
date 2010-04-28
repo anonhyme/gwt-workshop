@@ -16,41 +16,42 @@ public class MainPresenterTest extends ClientTestCase {
 
 	MainPresenter presenter = injector
 			.getInstance(MainPresenter.class);
-	MainPresenter.Display appDspl = presenter.getDisplay();
+	MainPresenter.Display mainDisplay = presenter.getDisplay();
 	ContactsPresenter contactsPresenter = injector
 			.getInstance(ContactsPresenter.class);
-	ContactsPresenter.Display contactsDspl = injector
+	ContactsPresenter.Display contactsDisplay = injector
 			.getInstance(ContactsPresenter.Display.class);
-	EditContactPresenter.Display editDspl = injector
+	EditContactPresenter.Display editContactDisplay = injector
 			.getInstance(EditContactPresenter.Display.class);
 
 	public void testApplicationController() throws Exception {
+		
 		HasClickHandlers addBtn = EasyMock.createNiceMock(HasClickHandlers.class);
 		HasClickHandlers delBtn = EasyMock.createNiceMock(HasClickHandlers.class);
 		HasClickHandlers list = EasyMock.createNiceMock(HasClickHandlers.class);
-		EasyMock.expect(contactsDspl.getAddButton()).andReturn(addBtn);
-		EasyMock.expect(contactsDspl.getDeleteButton()).andReturn(delBtn);
-		EasyMock.expect(contactsDspl.getList()).andReturn(list);
-		EasyMock.expect(contactsDspl.asWidget()).andReturn(new Widget()).anyTimes();
-		EasyMock.replay(contactsDspl);
+		EasyMock.expect(contactsDisplay.getAddButton()).andReturn(addBtn);
+		EasyMock.expect(contactsDisplay.getDeleteButton()).andReturn(delBtn);
+		EasyMock.expect(contactsDisplay.getList()).andReturn(list);
+		EasyMock.expect(contactsDisplay.asWidget()).andReturn(new Widget()).anyTimes();
+		EasyMock.replay(contactsDisplay);
 
-		assertNull(appDspl.asWidget());
+		assertNull(mainDisplay.asWidget());
 		presenter.onBind();
-		assertEquals(contactsDspl.asWidget(), appDspl.asWidget());
+		assertEquals(contactsDisplay.asWidget(), mainDisplay.asWidget());
 
 		eventBus.fireEvent(new AddContactEvent());
-		assertEquals(editDspl.asWidget(), appDspl.asWidget());
+		assertEquals(editContactDisplay.asWidget(), mainDisplay.asWidget());
 
 		eventBus.fireEvent(new EditContactCancelledEvent());
-		assertEquals(contactsDspl.asWidget(), appDspl.asWidget());
+		assertEquals(contactsDisplay.asWidget(), mainDisplay.asWidget());
 
 		eventBus.fireEvent(new EditContactEvent("1"));
-		assertEquals(editDspl.asWidget(), appDspl.asWidget());
+		assertEquals(editContactDisplay.asWidget(), mainDisplay.asWidget());
 
 		eventBus.fireEvent(new ContactUpdatedEvent(null));
-		assertEquals(contactsDspl.asWidget(), appDspl.asWidget());
+		assertEquals(contactsDisplay.asWidget(), mainDisplay.asWidget());
 
 		eventBus.fireEvent(new ContactDeletedEvent());
-		assertEquals(contactsDspl.asWidget(), appDspl.asWidget());
+		assertEquals(contactsDisplay.asWidget(), mainDisplay.asWidget());
 	}
 }
