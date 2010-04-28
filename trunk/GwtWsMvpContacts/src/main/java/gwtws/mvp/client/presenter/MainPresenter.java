@@ -30,8 +30,9 @@ public class MainPresenter extends
 	private EditContactPresenter editContactPresenter;
 
 	@Inject
-	public MainPresenter(PlaceManager pmngr, Display display,
-			EventBus bus, ContactsPresenter p1, EditContactPresenter p2) {
+	public MainPresenter(PlaceManager pmngr, Display display, EventBus bus, 
+			ContactsPresenter p1,
+			EditContactPresenter p2) {
 		super(display, bus, p1, p2);
 		contactsPresenter = p1;
 		editContactPresenter = p2;
