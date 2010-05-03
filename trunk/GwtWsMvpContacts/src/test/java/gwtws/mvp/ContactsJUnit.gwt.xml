@@ -3,5 +3,5 @@
   <!-- Inherit our applications main module. -->
   <inherits name='gwtws.mvp.Contacts'/>
   <!--  Dispatcher servlet -->
-  <servlet path='/dispatch' class='com.google.inject.servlet.GuiceFilter'/>
+  <servlet path='/dispatch' class='gwtws.mvp.server.DispatchTestServlet'/>
 </module>

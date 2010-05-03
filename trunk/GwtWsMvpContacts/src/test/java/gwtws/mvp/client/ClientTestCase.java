@@ -38,5 +38,8 @@ public abstract class ClientTestCase extends TestCase {
     public EditContactPresenter getEditContactPresenter() {
       return injector.getInstance(EditContactPresenter.class);
     }
+    public EventBus getEventBus() {
+      return injector.getInstance(EventBus.class);
+    }
   };
 }

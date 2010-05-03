@@ -23,6 +23,6 @@ public class MainView extends Composite implements MainPresenter.Display {
   }
 
   public Widget asWidget() {
-    return null;
+    return p.iterator().next();
   }
 }
