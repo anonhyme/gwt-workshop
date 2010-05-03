@@ -123,6 +123,10 @@ public class ContactsPresenter extends
             }
             display.setData(data);
           }
+          public void callbackError(Throwable originalCaught) {
+            System.out.println(originalCaught.getMessage());
+            contactDetails = new ArrayList<ContactDetails>();
+          }
         });
   }
 

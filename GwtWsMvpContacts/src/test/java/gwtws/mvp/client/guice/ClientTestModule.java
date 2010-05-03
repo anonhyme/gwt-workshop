@@ -66,8 +66,6 @@ public class ClientTestModule extends AbstractModule {
 
     bind(EventBus.class).to(DefaultEventBus.class).asEagerSingleton();
 
-    bind(MockedDispatchAsync.class);
-    
     easyBind(PlaceManager.class);
 
     bind(MainPresenter.class).asEagerSingleton();

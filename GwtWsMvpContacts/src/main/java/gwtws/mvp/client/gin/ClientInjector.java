@@ -22,6 +22,7 @@ import gwtws.mvp.client.presenter.ContactsPresenter;
 import gwtws.mvp.client.presenter.EditContactPresenter;
 import gwtws.mvp.client.presenter.MainPresenter;
 import net.customware.gwt.dispatch.client.gin.ClientDispatchModule;
+import net.customware.gwt.presenter.client.EventBus;
 
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
@@ -31,4 +32,5 @@ public interface ClientInjector extends Ginjector {
   public MainPresenter getMainPresenter();
   public ContactsPresenter getContactsPresenter();
   public EditContactPresenter getEditContactPresenter();
+  public EventBus getEventBus();
 }
