@@ -180,18 +180,13 @@
   <repositories>
     <repository>
       <id>gwt-workshop</id>
-      <name>GWT repository for workshop at googlecode</name>
+      <name>GWT repository for latest gwt-presenter</name>
       <url>http://gwt-workshop.googlecode.com/svn/trunk/mavenrepo</url>
     </repository>
     <repository>
       <id>gwt-dispatch</id>
       <name>GWT Dispatch repository at googlecode</name>
       <url>http://gwt-dispatch.googlecode.com/svn/maven2</url>
-    </repository>
-    <repository>
-      <id>gwt-presenter</id>
-      <name>GWT Presenter repository at googlecode</name>
-      <url>http://gwt-presenter.googlecode.com/svn/maven2</url>
     </repository>
     <repository>
       <id>guice</id>
