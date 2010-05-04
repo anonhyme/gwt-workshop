@@ -4,3 +4,9 @@ table.gwt-DecoratorPanel {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+table.contacts-ListContents td {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
