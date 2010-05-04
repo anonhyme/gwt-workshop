@@ -10,7 +10,7 @@ It is inspired in:
  - The project Apache-Hupa
    http://james.apache.org/hupa
 
-It is prepared to used with maven and eclipse and uses the latest versions of:
+It is prepared to be used with maven and eclipse and uses the latest versions of:
  - gwt-presenter
  - gwt-gin
  - gwt-dispatch
