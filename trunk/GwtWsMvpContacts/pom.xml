@@ -130,7 +130,7 @@
             <additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
           </additionalClasspathElements>
           <useManifestOnlyJar>false</useManifestOnlyJar>
-          
+          <forkMode>always</forkMode>
           <!-- Folder for generated testing stuff --> 
           <systemProperties>
             <property>
