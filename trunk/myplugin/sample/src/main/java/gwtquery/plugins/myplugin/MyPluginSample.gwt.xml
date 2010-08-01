@@ -1,0 +1,5 @@
+<module rename-to='MyPlugin'>
+    <inherits name='gwtquery.plugins.myplugin.MyPlugin'/>
+    <entry-point class='gwtquery.plugins.myplugin.client.MyPluginSample'/>
+</module>
+    
