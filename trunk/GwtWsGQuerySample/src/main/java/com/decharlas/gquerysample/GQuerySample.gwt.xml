@@ -1,0 +1,5 @@
+<module rename-to='GQuerySample'>
+    <inherits name='com.google.gwt.query.Query'/>
+    <entry-point class='com.decharlas.gquerysample.client.GQuerySample'/>
+</module>
+    
