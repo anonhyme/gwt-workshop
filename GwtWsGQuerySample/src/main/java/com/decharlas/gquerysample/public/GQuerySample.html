@@ -4,10 +4,116 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>GwtQuery: GQuerySample plugin example</title>
 <style type="text/css">
+body, button {
+  font-family: "Trebuchet MS",Verdana,Helvetica,Arial,sans-serif;
+  font-size: 12px;
+}
+.changeP {
+  background-color: pink;
+}
+.alert {
+	background-color:#FF0000;
+	color:#FFFFFF;
+	font-weight:bold;
+	padding:10px;
+	text-transform:uppercase;
+}
+pre {
+  font-family: monaco,monospace;
+}
 </style>
     <script language="javascript" src="GQuerySample.nocache.js"></script>
 </head>
   <body>
-    <div>Hello world</div>
+    <div id="hello">Hello world</div>
+    
+    <div style="float:left;width:48%;margin-right:2%;">
+
+<h2>Examples:</h2>
+
+<p><strong>Example A</strong></p>
+<p>Get number of paragraphs in column 2 and display that number in an alert box. Including the one in the red box.</p>
+<input type="button" value="# of Paragraphs" class="buttonAsize" />
+<a href="#" class="codeButtonA">Show&nbsp;/&nbsp;Hide jquery code</a>
+
+<pre class="codeA">alert($("div.contentToChange p").size());</pre>
+
+<br/>
+
+<p><strong>Example B</strong></p>
+<p>Animate a paragraph in Column 2 by using a slide animation.</p>
+
+<input type="button" value="Slide Out" class="buttonBslideup" />
+<input type="button" value="Slide In" class="buttonBslidedown" />
+<a href="#" class="codeButtonB">Show&nbsp;/&nbsp;Hide jquery code</a>
+<pre class="codeB">$("div.contentToChange p.firstparagraph:hidden").slideDown("slow");
+$("div.contentToChange p.firstparagraph:visible").slideUp("slow");</pre>
+
+<br/>
+
+<p><strong>Example C</strong></p>
+<p>Add/Remove text from the end of all &lt;p&gt; elements in column 2 except the paragraph in the red box.</p>
+
+<input type="button" value="Add" class="buttonCAdd" />
+<input type="button" value="Remove" class="buttonCRemove" />
+<a href="#" class="codeButtonC">Show&nbsp;/&nbsp;Hide jquery code</a>
+
+<pre class="codeC">$("div.contentToChange p:not(.alert)")
+  .append("&lt;strong class="addedtext"&gt;&nbsp;This text was just appended to this paragraph&lt;/strong&gt;")});
+$("strong.addedtext").remove();</pre>
+
+<br/>
+
+<p><strong>Example D</strong></p>
+
+<p>Remove paragraph with fade and animation.</p>
+<input type="button" value="Remove" class="buttonDhide" />
+<a href="#" class="codeButtonD">Show&nbsp;/&nbsp;Hide jquery code</a>
+
+<pre class="codeD">$("div.contentToChange p.thirdparagraph").hide("slow");</pre>
+
+<br/>
+
+<p><strong>Example E</strong></p>
+<p>Change the font weight and color of all Italic text in column 2 by adding CSS properties and values to all &lt;em&gt; elements.</p>
+
+<input type="button" value="Change Italics" class="buttonEitalics" />
+<a href="#" class="codeButtonE">Show&nbsp;/&nbsp;Hide jquery code</a>
+
+<pre class="codeE">$("div.contentToChange em").css({color:"#993300", fontWeight:"bold"});</pre>
+
+<br/>
+
+<p><strong>Example F</strong></p>
+<p>Change the CSS on the fifth paragraph in Column 2 by adding a class value to the &lt;p&gt; element.</p>
+
+<input type="button" value="Add Class" class="buttonFaddclass" />
+<input type="button" value="Remove Class" class="buttonFremoveclass" />
+<a href="#" class="codeButtonF">Show&nbsp;/&nbsp;Hide jquery code</a>
+
+<pre class="codeF">$("p.fifthparagraph").addClass("changeP");
+$("p.fifthparagraph").removeClass("changeP");</pre>
+</div>
+
+<div style="float:right;width:50%;background:#F5F5F5;" class="contentToChange">
+<h2 style="margin-left:30px;">Column 2:</h2>
+
+<p class="alert">Use the buttons to the left to run jQuery code on the HTML below.</p> 
+
+<p class="firstparagraph">Lorem ipsum <em>dolor</em> sit amet, consectetuer <em>adipiscing</em> elit, sed diam nonummy nibh euismod <em>tincidunt</em> ut laoreet dolore magna aliquam erat <strong>volutpat</strong>. Ut wisi enim ad minim <em>veniam</em>, quis nostrud exerci <strong>tation</strong> ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+
+<p class="secondparagraph">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse <strong>molestie</strong> consequat, vel illum <strong>dolore</strong> eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer <strong>adipiscing</strong> elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+
+<p class="thirdparagraph">Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea <em>commodo</em> consequat. Duis autem vel eum iriure dolor in hendrerit in <em>vulputate</em> velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te <strong>feugait</strong> nulla facilisi.</p>
+
+<p class="fourthparagraph">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <strong>quis</strong> nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+Duis autem vel eum iriure dolor in <em>hendrerit</em> in vulputate velit <em>esse</em> molestie consequat, vel illum dolore eu feugiat nulla <strong>facilisis</strong> at vero eros et accumsan et <em>iusto</em> odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te <strong>feugait</strong> nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh <strong>euismod</strong> tincidunt ut laoreet <em>dolore</em> magna aliquam erat volutpat.</p>
+
+<p class="fifthparagraph">Lorem ipsum <em>dolor</em> sit amet, consectetuer <em>adipiscing</em> elit, sed diam nonummy nibh euismod <em>tincidunt</em> ut laoreet dolore magna aliquam erat <strong>volutpat</strong>. Ut wisi enim ad minim <em>veniam</em>, quis nostrud exerci <strong>tation</strong> ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+
+<p class="sixthparagraph">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse <strong>molestie</strong> consequat, vel illum <strong>dolore</strong> eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer <strong>adipiscing</strong> elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+
+</div>
+    
   </body>
 </html>
