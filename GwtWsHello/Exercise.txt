@@ -1,0 +1,9 @@
+
+
+Create a new GWT Project with eclipse (Do not use GAE).
+
+Remove all unnecessary stuff (rpc, comments, tests).
+
+Create basic widgets:
+- Buttons (Alerts, Stdout.println).
+- FlexTable.
