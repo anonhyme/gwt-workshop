@@ -1,0 +1,7 @@
+
+
+Download StockWatcher example from google
+
+Move refreshWatchList from client side to server.
+
+
